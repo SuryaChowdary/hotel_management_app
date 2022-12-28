@@ -1,0 +1,47 @@
+<h1> Edit Hotel Details</h1>
+
+<%= form_with(model: @hotel, local: true) do |f| %>
+  <p> 
+    <%= f.label :Name %> <br/>
+    <%= f.text_field :name %>
+  </p>
+
+  <p> 
+    <%= f.label :Address %> <br/>
+    <%= f.text_field :address %>
+  </p>
+
+  <p> 
+    <%= f.label :City %> <br/>
+    <%= f.text_field :city %>
+  </p>
+
+  <p> 
+    <%= f.label :State %> <br/>
+    <%= f.text_field :state %>
+  </p>
+
+  <p> 
+    <%= f.label :Country %> <br/>
+    <%= f.text_field :country %>
+  </p>
+
+  <p> 
+    <%= f.label :Phone %> <br/>
+    <%= f.text_field :phone %>
+  </p>
+
+  <p> 
+    <%= f.label :Website %> <br/>
+    <%= f.text_field :website %>
+  </p>
+
+  <p>
+    <%= f.submit "Add Hotel" %>
+  </p>
+
+  <p>
+    <%= link_to 'Back' , hotel_branches_path %>
+  </p>
+  
+<% end%>

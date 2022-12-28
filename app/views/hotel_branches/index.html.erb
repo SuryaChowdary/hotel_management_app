@@ -1,0 +1,40 @@
+<h1> List of all Hotels </h1>
+<table>
+  <thead>
+    <tr>
+      <th> Hotel Name </th>
+      <th> Address</th>
+      <th> City </th>
+      <th> State</th>
+      <th> Country</th>
+      <th> Phone </th>
+      <th> Website </th>
+      <th colspan=3> Actions </th>
+    </tr>
+    <tr>
+  </thead>
+    <tbody>
+      <% @hotel.each do |hotel| %>
+        <tr>
+      <td><%= hotel.name %></td>
+      <td><%= hotel.address %></td>
+      <td><%= hotel.city %></td>
+      <td><%= hotel.state %></td>
+      <td><%= hotel.country %></td>
+      <td><%= hotel.phone %></td>
+      <td><%= hotel.website %></td>
+      <td><%= link_to 'Show', hotel_branch_path(hotel) %></td>
+      <td><%= link_to 'Edit', edit_hotel_branch_path(hotel) %></td>
+      <td><%= link_to 'Delete', hotel_branch_path(hotel) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<p>
+  <%= link_to 'Add New Hotel' , new_hotel_branch_path %>
+</p>
+
+<p>
+  <%= link_to 'Home' , root_path %>
+</p>
