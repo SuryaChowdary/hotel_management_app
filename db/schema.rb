@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_28_054755) do
+ActiveRecord::Schema.define(version: 2022_12_28_092330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,22 @@ ActiveRecord::Schema.define(version: 2022_12_28_054755) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "room_facilities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "room_id"
+    t.bigint "room_facility_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_facility_category_id"], name: "index_room_facilities_on_room_facility_category_id"
+    t.index ["room_id"], name: "index_room_facilities_on_room_id"
+  end
+
+  create_table "room_facility_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.bigint "hotel_branch_id"
     t.string "name"
@@ -37,5 +53,7 @@ ActiveRecord::Schema.define(version: 2022_12_28_054755) do
     t.index ["hotel_branch_id"], name: "index_rooms_on_hotel_branch_id"
   end
 
+  add_foreign_key "room_facilities", "room_facility_categories"
+  add_foreign_key "room_facilities", "rooms"
   add_foreign_key "rooms", "hotel_branches"
 end
