@@ -1,0 +1,19 @@
+<%= form_with(model: @room_facility, local: true) do |f| %>
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :category %>
+    <%= f.collection_select :room_facility_category_id, RoomFacilityCategory.all, :id, :name %>
+  </p>
+
+  <p>
+    <%= f.label :Room %>
+    <%= f.collection_select :room_id, Room.all, :id, :name %>
+  </p>
+
+
+  <%= f.submit %>
+<% end %>

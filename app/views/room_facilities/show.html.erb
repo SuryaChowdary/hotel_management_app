@@ -1,0 +1,21 @@
+<h1>Room Facility for <%= @room_facility.room.name %></h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @room_facility.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @room_facility.room_facility_category.name %>
+</p>
+
+<p>
+  <strong>Room Type:</strong>
+  <%= @room_facility.room.name%>
+</p>
+
+
+
+<%= link_to 'Edit', edit_room_facility_path(@room_facility) %> |
+<%= link_to 'Back', room_facilities_path %>
