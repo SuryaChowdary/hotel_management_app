@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2022_12_28_054755) do
   create_table "rooms", force: :cascade do |t|
     t.bigint "hotel_branch_id"
     t.string "name"
-    t.string "room_type", default: "standard", null: false
     t.integer "capacity"
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false

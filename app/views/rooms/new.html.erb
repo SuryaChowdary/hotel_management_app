@@ -1,0 +1,32 @@
+<h1> Add New Room</h1>
+
+<%= form_with scope: :room  , url: rooms_path, local: true do |f| %>
+  <p> 
+    <%= f.label :Name %> <br/>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :Hotel%> <br/>
+    <%= f.select :hotel_branch_id, HotelBranch.all.collect {|x| [x.name, x.id]}, {} %>
+  </p>
+
+  <p> 
+    <%= f.label :Capacity %> <br/>
+    <%= f.text_field :capacity %>
+  </p>
+
+  <p> 
+    <%= f.label :price %> <br/>
+    <%= f.text_field :price %>
+  </p>
+
+  <p>
+    <%= f.submit "Update Room" %>
+  </p>
+
+  <p>
+    <%= link_to 'Back' , rooms_path %>
+  </p>
+  
+<% end%>
