@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :hotel_branches
   resources :rooms
   resources :clients
+  resources :regions
 end
