@@ -1,0 +1,6 @@
+<%= form_with(model: @room_facility_category, url: room_facility_category_path(@room_facility_category), method: :patch) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.submit "Update Category" %>
+<% end %>

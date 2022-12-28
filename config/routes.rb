@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :clients
   resources :regions
   resources :locations
+  resources :room_facility_categories
 end

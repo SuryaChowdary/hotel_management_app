@@ -13,7 +13,7 @@ class HotelBranchesController < ApplicationController
   end
 
   def create
-    @hotel = HotelBranch.new(params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website))
+    @hotel = HotelBranch.new(params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website, :location_id))
     if @hotel.save
       flash[:notice] = "Hotel Branch was added successfully"
       redirect_to hotel_branches_path(@hotel)
@@ -28,7 +28,7 @@ class HotelBranchesController < ApplicationController
 
   def update
     @hotel = HotelBranch.find(params[:id])
-    if @hotel.update(params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website))
+    if @hotel.update(params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website, :location_id))
       flash[:notice] = "Hotel details are edited Successfully"
       redirect_to hotel_branches_path(@hotel)
     else

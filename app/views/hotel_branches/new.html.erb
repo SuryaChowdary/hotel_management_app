@@ -23,7 +23,7 @@
 
   <p> 
     <%= f.label :Country %> <br/>
-    <%= f.text_field :country %>
+    <%= f.collection_select :location_id, Location.all, :id, :country %>
   </p>
 
   <p> 

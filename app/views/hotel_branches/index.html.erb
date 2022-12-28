@@ -6,7 +6,7 @@
       <th> Address</th>
       <th> City </th>
       <th> State</th>
-      <th> Country</th>
+      <th> Location </th>
       <th> Phone </th>
       <th> Website </th>
       <th colspan=3> Actions </th>
@@ -20,7 +20,7 @@
       <td><%= hotel.address %></td>
       <td><%= hotel.city %></td>
       <td><%= hotel.state %></td>
-      <td><%= hotel.country %></td>
+      <td><%= hotel.location.country if hotel.location%></td>
       <td><%= hotel.phone %></td>
       <td><%= hotel.website %></td>
       <td><%= link_to 'Show', hotel_branch_path(hotel) %></td>
