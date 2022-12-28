@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   resources :hotel_branches
   resources :rooms
+  resources :clients
 end

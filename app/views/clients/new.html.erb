@@ -1,0 +1,12 @@
+
+<%= form_with scope: :client, url: clients_path, local: true do |f| %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
