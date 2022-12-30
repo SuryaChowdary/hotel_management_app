@@ -6,6 +6,12 @@
     <%= f.text_field :name %>
   </div>
 
+ <p>
+    <%= f.label :User%> <br/>
+    <%= f.select :user_id, User.all.collect {|x| [x.username, x.id]}, {} %>
+  </p>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
