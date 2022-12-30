@@ -1,4 +1,6 @@
 class RoomFacilityCategoriesController < ApplicationController
+  before_action :require_user
+  
   def index
     @room_facility_categories = RoomFacilityCategory.all
   end

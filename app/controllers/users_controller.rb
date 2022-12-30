@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Welcome to Hotel Application #{@user.username} You've successfully signed up"
-      redirect_to clients_path
+      redirect_to root_path
     else
       render 'new'
     end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def update
 
-    if @user.update(user_params)
+    if @user.update(user_params)  
       flash[:notice]= "User is updated successfully"
       redirect_to @user
     else
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   end
   def show
-    @clients = @user.clients
+
   end
 
   def index

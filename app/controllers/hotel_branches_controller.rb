@@ -1,5 +1,7 @@
 class HotelBranchesController < ApplicationController
 
+  before_action :require_user
+
   def index
     @hotel = HotelBranch.all
   end

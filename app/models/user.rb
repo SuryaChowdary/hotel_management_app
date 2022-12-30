@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_many :clients
   validates :username, presence: true
     EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i                    
   validates :email , presence: true , 

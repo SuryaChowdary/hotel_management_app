@@ -6,6 +6,9 @@
       </h1>
       <p class="lead">
       <p><%= link_to 'Sign Up' , signup_path, class: 'btn btn-success btn-lg' %></p>
+      <% if logged_in? %>
+      <p><%= link_to 'View Hotels' , hotel_branches_path, class: 'btn btn-success btn-lg' %></p>
+     <% end%>
     </div>
   </div>
 </div>

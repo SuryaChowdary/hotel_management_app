@@ -1,6 +1,8 @@
 class RoomFacilitiesController < ApplicationController
-  before_action :set_room_facility, only: [:show, :edit, :update, :destroy]
 
+  before_action :set_room_facility, only: [:show, :edit, :update, :destroy]
+  before_action :require_user
+  
   def index
     @room_facilities = RoomFacility.all
   end
