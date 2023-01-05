@@ -1,12 +1,21 @@
-
-<%= form_with scope: :client, url: clients_path, local: true do |f| %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<div class="container">
+  <div class="row justify-content-center mt-4 ">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Add a New Client</div>
+        <div class="card-body">
+          <%= form_with scope: :client , url: clients_path, local: true do |f| %>
+            <div class="form-group">
+              <%= f.label :Name %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.submit 'Add Client', class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

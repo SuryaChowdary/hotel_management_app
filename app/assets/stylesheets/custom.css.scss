@@ -1,1 +1,32 @@
 @import 'bootstrap/dist/css/bootstrap';
+.nav-link {
+  color :rgb(29, 28, 28) !important;  
+}
+#home-container {
+  margin-top: 25px;
+}
+.jumbotron {
+  background-image: asset-url('blog-copy.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 425px;
+
+}
+
+.flash {
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.flash.flash-notice {
+  background-color: green;
+  color: white;
+}
+
+.flash.flash-alert {
+  background-color: red;
+  color: white;
+}
+

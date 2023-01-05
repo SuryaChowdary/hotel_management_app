@@ -1,9 +1,13 @@
-<h1>Room Facility Category</h1>
-
-<p>
-  <strong>Name:</strong>
-  <%= @room_facility_category.name %>
-</p>
-
-<%= link_to 'Edit', edit_room_facility_category_path(@room_facility_category) %> |
-<%= link_to 'Back', room_facility_categories_path %>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">Categories for Room Facilities</h1>
+    </div>
+    <div class="card-body">
+       <h2 class="card-subtitle mb-2 text-muted"> Name: <%= @room_facility_category.name %></h2>
+    <div class="card-footer text-muted">
+      <%= link_to 'Edit', edit_room_facility_category_path(@room_facility_category), class: 'btn btn-primary' %>
+      <%= link_to 'Back', room_facility_categories_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

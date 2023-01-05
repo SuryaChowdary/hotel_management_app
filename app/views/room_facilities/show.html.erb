@@ -1,21 +1,16 @@
-<h1>Room Facility for <%= @room_facility.room.name %></h1>
-
-<p>
-  <strong>Name:</strong>
-  <%= @room_facility.name %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @room_facility.room_facility_category.name %>
-</p>
-
-<p>
-  <strong>Room Type:</strong>
-  <%= @room_facility.room.name%>
-</p>
-
-
-
-<%= link_to 'Edit', edit_room_facility_path(@room_facility) %> |
-<%= link_to 'Back', room_facilities_path %>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">Room facilities for <%= @room_facility.room.name %></h1>
+    </div>
+    <div class="card-body">
+       <h2 class="card-subtitle mb-2 text-muted"> Name: <%= @room_facility.name %></h2>
+       <h2 class="card-subtitle mb-2 text-muted">Category: <%= @room_facility.room_facility_category.name %></h2>
+       <h2 class="card-subtitle mb-2 text-muted">Room Type: <%= @room_facility.room.name %></h2>    
+    </div>
+    <div class="card-footer text-muted">
+      <%= link_to 'Edit', edit_room_facility_path(@room_facility), class: 'btn btn-primary' %>
+      <%= link_to 'Back', room_facilities_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

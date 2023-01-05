@@ -1,32 +1,36 @@
-<h1> Edit Room  Details</h1>
+<div class="container">
+  <div class="row justify-content-center mt-4 ">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Edit Room Details</div>
+        <div class="card-body">
+          <%= form_with(model: @room, remote: true) do |f| %>
+            <div class="form-group">
+              <%= f.label :Name %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Hotel %><br/>
+              <%= f.select :hotel_branch_id, HotelBranch.all.collect {|x| [x.name, x.id]}, {} %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Capacity %>
+              <%= f.text_field :capacity, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Price %>
+              <%= f.text_field :price, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.submit 'Update Room', class: 'btn btn-primary mt-2' %>
+            </div>
+          <% end %>
+          <div class="card-footer text-muted">
+            <%= link_to 'Back', rooms_path, class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= form_with model: @room, url: room_path(@room), method: :patch do |f| %>
-  <p> 
-    <%= f.label :Name %> <br/>
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.label :Hotel%> <br/>
-    <%= f.select :hotel_branch_id, HotelBranch.all.collect {|x| [x.name, x.id]}, {} %>
-  </p>
-
-  <p> 
-    <%= f.label :Capacity %> <br/>
-    <%= f.text_field :capacity %>
-  </p>
-
-  <p> 
-    <%= f.label :price %> <br/>
-    <%= f.text_field :price %>
-  </p>
-
-  <p>
-    <%= f.submit "Update Room" %>
-  </p>
-
-  <p>
-    <%= link_to 'Back' , rooms_path %>
-  </p>
-  
-<% end%>

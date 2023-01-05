@@ -1,13 +1,21 @@
-<h1>  Details of  <%= @hotel.name%> </h1>
-
-<p><strong> Name: </strong> <%= @hotel.name%></p>
-<p><strong> Address: </strong> <%= @hotel.address%></p>
-<p><strong> City: </strong> <%= @hotel.city%></p>
-<p><strong> State: </strong> <%= @hotel.state%></p>
-<p><strong> Country: </strong> <%= @hotel.location.country%></p>
-<p><strong> Phone: </strong> <%= @hotel.phone%></p>
-<p><strong> Website: </strong> <%= @hotel.website%></p>
-
-<p><%= link_to 'View Rooms' , rooms_path %></p>
-
-<p><%= link_to "Back" , hotel_branches_path %></p>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title"><%= @hotel.name %></h1>
+    </div>
+    <div class="card-body">
+      <h2 class="card-subtitle mb-2 text-muted">Address:</h2>
+        <p class="card-text "> Area: <%= @hotel.address %></p>
+        <p class="card-text "> City: <%= @hotel.city %></p>
+        <p class="card-text"> State: <%= @hotel.state %></p>
+        <p class="card-text"> Country: <%= @hotel.location.country %></p>
+       <h2 class="card-subtitle mb-2 text-muted">Number: <%= @hotel.phone %></h2>
+       <h2 class="card-subtitle mb-2 text-muted">Website: <%= @hotel.website %></h2>
+    </div>
+    <div class="card-footer text-muted">
+      <%= link_to 'Rooms', rooms_path, class: 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_hotel_branch_path(@hotel), class: 'btn btn-primary' %>
+      <%= link_to 'Back', hotel_branches_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

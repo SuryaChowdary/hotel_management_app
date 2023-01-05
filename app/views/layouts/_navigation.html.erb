@@ -1,34 +1,53 @@
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
-
-      <%= link_to "Home", root_path, class: "navbar-brand"  %>
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-       </button>
-
-       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-         <ul class="navbar-nav mr-auto">
-              <% if logged_in? %>
-               <li class="nav-item">
-                <%= link_to 'Hotels', hotel_branches_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Clients', clients_path, class: "nav-link" %>
-              </li>
-               <li class="nav-item">
-                <%= link_to 'Profile', user_path(current_user), class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to 'Log in', login_path, class: "nav-link" %>
-              </li>
+<nav class="navbar bg-body-tertiary navbar-shrink">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Hotel Management Application</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Hotel</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"><%= link_to 'Home' , root_path, class: "nav-link" %></a>
+            <% if !logged_in? %>
+              <a class="nav-link active" aria-current="page" href="#"><%= link_to 'Signup' , signup_path, class: "nav-link" %></a>
+              <a class="nav-link active" aria-current="page" href="#"><%= link_to 'Login' , login_path, class: "nav-link" %></a>
             <% end %>
-       </ul>
-         <form class="form-inline my-2 my-lg-0">
-           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-         </form>
-       </div>
-     </nav>
+          </li>
+          <% if logged_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Profile
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><%= link_to 'View Profile', user_path(current_user), class: "nav-link" %></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Log out', logout_path, class: "nav-link" , method: :delete %></a></li>
+              </ul>
+            </li>
+          <% end %> 
+          <% if logged_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hotels
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><%= link_to 'Hotels', hotel_branches_path, class: "nav-link" %></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Rooms', rooms_path, class: "nav-link" %></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Clients', clients_path, class: "nav-link" %></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Locations', locations_path, class: "nav-link" %></a></li>
+              </ul>
+            </li>
+          <% end %> 
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>

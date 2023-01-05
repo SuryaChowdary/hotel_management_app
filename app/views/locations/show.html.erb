@@ -1,11 +1,15 @@
-<p>
-  <strong> Country:</strong>
-  <%= @location.country %>
-</p>
-
-<p>
-  <strong>Region:</strong>
-    <%= @location.region.name %>
-</p>
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">Location Details</h1>
+    </div>
+    <div class="card-body">
+       <h2 class="card-subtitle mb-2 text-muted"> Country: <%= @location.country %></h2>
+       <h2 class="card-subtitle mb-2 text-muted">Region: <%= @location.region.name %></h2>
+    </div>
+    <div class="card-footer text-muted">
+      <%= link_to 'Edit', edit_location_path(@location), class: 'btn btn-primary' %>
+      <%= link_to 'Back', locations_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

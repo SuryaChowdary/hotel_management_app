@@ -1,6 +1,6 @@
 <h1>Listing Room Facilities</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -14,9 +14,9 @@
       <tr>
         <td><%= room_facility.name %></td>
         <td><%= room_facility.room_facility_category.name %></td>
-        <td><%= link_to 'Show', room_facility %></td>
-        <td><%= link_to 'Edit', edit_room_facility_path(room_facility) %></td>
-        <td><%= link_to 'Destroy', room_facility, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', room_facility, class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_room_facility_path(room_facility), class: 'btn btn-secondary' %></td>
+        <td><%= link_to 'Destroy', room_facility,class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,7 +24,7 @@
 
 <br>
 
-<%= link_to 'New Room Facility', new_room_facility_path %>
+<%= link_to 'New Room Facility', new_room_facility_path, class: 'btn btn-primary'%>
 <br/>
 <br/>
-<%= link_to 'View Categories', room_facility_categories_path %>
+<%= link_to 'View Categories', room_facility_categories_path, class: 'btn btn-secondary' %>

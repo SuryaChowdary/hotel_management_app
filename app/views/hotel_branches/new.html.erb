@@ -1,47 +1,44 @@
-<h1> Add New Hotel</h1>
-
-<%= form_with scope: :hotel_branch  , url: hotel_branches_path, local: true do |f| %>
-  <p> 
-    <%= f.label :Name %> <br/>
-    <%= f.text_field :name %>
-  </p>
-
-  <p> 
-    <%= f.label :Address %> <br/>
-    <%= f.text_field :address %>
-  </p>
-
-  <p> 
-    <%= f.label :City %> <br/>
-    <%= f.text_field :city %>
-  </p>
-
-  <p> 
-    <%= f.label :State %> <br/>
-    <%= f.text_field :state %>
-  </p>
-
-  <p> 
-    <%= f.label :Country %> <br/>
-    <%= f.collection_select :location_id, Location.all, :id, :country %>
-  </p>
-
-  <p> 
-    <%= f.label :Phone %> <br/>
-    <%= f.text_field :phone %>
-  </p>
-
-  <p> 
-    <%= f.label :Website %> <br/>
-    <%= f.text_field :website %>
-  </p>
-
-  <p>
-    <%= f.submit "Add Hotel" %>
-  </p>
-
-  <p>
-    <%= link_to 'Back' , hotel_branches_path %>
-  </p>
-  
-<% end%>
+<div class="container">
+  <div class="row justify-content-center mt-4 ">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Add a New Hotel</div>
+        <div class="card-body">
+          <%= form_with scope: :hotel_branch  , url: hotel_branches_path, local: true do |f| %>
+            <div class="form-group">
+              <%= f.label :Name %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Address %>
+              <%= f.text_field :address, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :City%>
+              <%= f.text_field :city, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :State %>
+              <%= f.text_field :state, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Country %><br/>
+              <%= f.collection_select :location_id, Location.all, :id, :country %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Phone %>
+              <%= f.text_field :phone, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Website %>
+              <%= f.text_field :website, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.submit 'Add Hotel', class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
