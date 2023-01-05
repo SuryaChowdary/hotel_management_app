@@ -1,4 +1,5 @@
 //= require jquery3
+//= require rails-ujs
 //= require popper
 //= require bootstrap/dist/js/bootstrap
 import '@popperjs/core';

@@ -15,6 +15,10 @@ class LocationsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -30,10 +34,15 @@ class LocationsController < ApplicationController
 
   def update
     if @location.update(location_params)
-      flash[:notice] = "Location details are updated successfully"
-      redirect_to locations_path(@location)
+      respond_to do |format|
+        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        format.js { render inline: "location_reload();"}
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.html { render :edit }
+        format.js { render 'edit' }
+      end
     end
   end
 
