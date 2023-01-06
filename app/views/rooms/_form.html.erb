@@ -13,9 +13,9 @@
   <div class="row justify-content-center mt-4 ">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">Add a New Room</div>
+        <div class="card-header">Edit Room Details</div>
         <div class="card-body">
-          <%= form_with scope: :room , url: rooms_path, local: true do |f| %>
+            <%= form_with(model: @room, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
             <div class="form-group">
               <%= f.label :Name %>
               <%= f.text_field :name, class: 'form-control' %>
@@ -33,7 +33,7 @@
               <%= f.text_field :price, class: 'form-control' %>
             </div>
             <div class="form-group">
-              <%= f.submit 'Add Room', class: 'btn btn-primary mt-2' %>
+              <%= f.submit 'Update Room', class: 'btn btn-primary mt-2' %>
             </div>
           <% end %>
           <div class="card-footer text-muted">

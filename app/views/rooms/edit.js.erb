@@ -1,0 +1,8 @@
+$(document).ready(function() {
+  $('#editModal').modal('show');
+  $('#form-container').html('<%= escape_javascript(render 'rooms/form') %>');
+});
+
+function room_reload() {
+    window.location.reload();
+  }

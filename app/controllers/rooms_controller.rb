@@ -14,6 +14,10 @@ class RoomsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -28,15 +32,24 @@ class RoomsController < ApplicationController
 
   def update
     if @room.update(room_params)
-      redirect_to rooms_path(@room), notice: 'Room was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        format.js { render inline: "room_reload();"}
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.html { render :edit }
+        format.js { render 'edit' }
+      end
     end
   end
 
   def destroy
     @room.destroy
-    redirect_to rooms_path, notice: 'Room was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
+      format.js   { render }
+    end
   end
 
   private

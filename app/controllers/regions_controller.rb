@@ -36,7 +36,7 @@ class RegionsController < ApplicationController
     if @region.update(region_params)
       respond_to do |format|
         format.html { redirect_to @location, notice: 'Location was successfully updated.' }
-        format.js { render inline: "location_reload();"}
+        format.js { render inline: "region_reload();"}
       end
     else
       respond_to do |format|
