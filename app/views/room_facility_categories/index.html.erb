@@ -10,10 +10,10 @@
 
   <tbody>
     <% @room_facility_categories.each do |room_facility_category| %>
-      <tr>
+      <tr id = "room_facility_category-<%= room_facility_category.id %>">
         <td><%= room_facility_category.name %></td>
         <td><%= link_to 'Show', room_facility_category, class: 'btn btn-primary'%></td>
-        <td><%= link_to 'Edit', edit_room_facility_category_path(room_facility_category), class: 'btn btn-secondary' %></td>
+        <td><%= link_to 'Edit', edit_room_facility_category_path(room_facility_category), data: {remote: true},class: 'btn btn-secondary' %></td>
         <td><%= link_to 'Destroy', room_facility_category,class: 'btn btn-danger',method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -23,3 +23,5 @@
 <br>
 
 <%= link_to 'New Room Facility Category', new_room_facility_category_path, class: 'btn btn-primary' %>
+
+<div id="form-container">

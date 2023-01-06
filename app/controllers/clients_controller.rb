@@ -14,11 +14,15 @@ class ClientsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
+
 
   def create
     @client = Client.new(client_params)
-
     if @client.save
       flash[:notice] = "Client details are added successfully"
       redirect_to clients_path(@client) 
@@ -30,16 +34,24 @@ class ClientsController < ApplicationController
   def update
     if @client.update(client_params)
       flash[:notice] = "Client details are edited successfully"
-      redirect_to clients_path(@client)
+      respond_to do |format|
+        format.html { redirect_to @client }
+        format.js { render inline: "location_reload();"}
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.html { render :edit }
+        format.js { render 'edit' }
+      end
     end
   end
 
   def destroy
     @client.destroy
-    flash[:notice] = "Client is removed successfully"
-    redirect_to clients_path
+    respond_to do |format|
+      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
+      format.js   { render }
+    end
   end
 
   private

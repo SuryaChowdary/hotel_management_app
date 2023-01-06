@@ -33,6 +33,7 @@ class HotelBranchesController < ApplicationController
 
   def update
     if @hotel.update(hotel_params)
+      flash[:notice] = "Hotel details are edited successfully"
       respond_to do |format|
         format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
         format.js { render inline: "location_reload();"}
