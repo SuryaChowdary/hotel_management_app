@@ -48,9 +48,12 @@ class LocationsController < ApplicationController
 
   def destroy
     @location.destroy
-    flash[:notice] = "Location is deleted successfully"
-    redirect_to locations_path
+    respond_to do |format|
+      format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
+      format.js   { render }
+    end
   end
+  
 
   private
     def set_location

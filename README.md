@@ -39,3 +39,4 @@
 </div>
 
 
+// document.getElementById('location-<%= @location.id %>').remove(); 
