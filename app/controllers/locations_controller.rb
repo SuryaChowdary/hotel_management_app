@@ -23,7 +23,6 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-
     if @location.save
       flash[:notice] = "Location is added Successfully"
       redirect_to locations_path(@location)

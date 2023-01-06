@@ -15,6 +15,10 @@ class RegionsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -30,17 +34,24 @@ class RegionsController < ApplicationController
 
   def update
     if @region.update(region_params)
-      flash[:notice] = "Region details are updated successfully"
-      redirect_to regions_path(@region)
+      respond_to do |format|
+        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        format.js { render inline: "location_reload();"}
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.html { render :edit }
+        format.js { render 'edit' }
+      end
     end
   end
 
   def destroy
     @region.destroy
-    flash[:notice] = "Region is deleted successfully"
-    redirect_to regions_path
+    respond_to do |format|
+      format.html { redirect_to regions_url, notice: 'Region was successfully destroyed.' }
+      format.js   { render }
+    end
   end
 
   private
