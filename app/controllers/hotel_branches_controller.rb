@@ -1,13 +1,13 @@
 class HotelBranchesController < ApplicationController
 
   before_action :require_user
+  before_action :set_hotel, only: [:show, :edit, :update, :destroy]
 
   def index
     @hotel = HotelBranch.all
   end
 
   def show
-    @hotel = HotelBranch.find(params[:id])
   end
   
   def new
@@ -15,7 +15,7 @@ class HotelBranchesController < ApplicationController
   end
 
   def create
-    @hotel = HotelBranch.new(params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website, :location_id))
+    @hotel = HotelBranch.new(hotel_params)
     if @hotel.save
       flash[:notice] = "Hotel Branch was added successfully"
       redirect_to hotel_branches_path(@hotel)
@@ -25,25 +25,42 @@ class HotelBranchesController < ApplicationController
   end
 
   def edit
-    @hotel = HotelBranch.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
-    @hotel = HotelBranch.find(params[:id])
-    if @hotel.update(params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website, :location_id))
-      flash[:notice] = "Hotel details are edited Successfully"
-      redirect_to hotel_branches_path(@hotel)
+    if @hotel.update(hotel_params)
+      respond_to do |format|
+        format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
+        format.js { render inline: "location_reload();"}
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.html { render :edit }
+        format.js { render 'edit' }
+      end
     end
   end
 
   def destroy
-    @hotel = HotelBranch.find(params[:id])
-    if @hotel.destroy
-      flash[:notice] = "Hotel was deleted successfully"
-      redirect_to hotel_branches_path
+    @hotel.destroy
+    respond_to do |format|
+      format.html { redirect_to hotel_branches_path, notice: 'Hotel was successfully destroyed.' }
+      format.js   { render }
     end
+  end
+
+  private 
+
+  def set_hotel
+    @hotel = HotelBranch.find(params[:id])
+  end
+
+  def hotel_params
+    params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website, :location_id)
   end
 
 end

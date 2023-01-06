@@ -11,12 +11,12 @@
 
   <tbody>
     <% @room_facilities.each do |room_facility| %>
-      <tr>
+      <tr id= "room_facility-<%= room_facility.id%>">
         <td><%= room_facility.name %></td>
         <td><%= room_facility.room_facility_category.name %></td>
         <td><%= link_to 'Show', room_facility, class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Edit', edit_room_facility_path(room_facility), class: 'btn btn-secondary' %></td>
-        <td><%= link_to 'Destroy', room_facility,class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_room_facility_path(room_facility), data: { remote: true }, class: 'btn btn-secondary' %></td>
+        <td><%= link_to 'Destroy', room_facility,class: 'btn btn-danger',remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,3 +28,5 @@
 <br/>
 <br/>
 <%= link_to 'View Categories', room_facility_categories_path, class: 'btn btn-secondary' %>
+
+<div id="form-container"></div>

@@ -8,13 +8,12 @@
         <p class="card-text "> Area: <%= @hotel.address %></p>
         <p class="card-text "> City: <%= @hotel.city %></p>
         <p class="card-text"> State: <%= @hotel.state %></p>
-        <p class="card-text"> Country: <%= @hotel.location.country %></p>
+        <p class="card-text"> Location: <%= @hotel.location.country %></p>
        <h2 class="card-subtitle mb-2 text-muted">Number: <%= @hotel.phone %></h2>
        <h2 class="card-subtitle mb-2 text-muted">Website: <%= @hotel.website %></h2>
     </div>
     <div class="card-footer text-muted">
       <%= link_to 'Rooms', rooms_path, class: 'btn btn-primary' %>
-      <%= link_to 'Edit', edit_hotel_branch_path(@hotel), class: 'btn btn-primary' %>
       <%= link_to 'Back', hotel_branches_path, class: 'btn btn-secondary' %>
     </div>
   </div>

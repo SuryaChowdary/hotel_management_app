@@ -1,21 +1,20 @@
-<h1> Edit Region</h1>
-<% if @region.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@region.errors.count, "error") %> prohibited this region from being saved:</h2>
-
-      <ul>
-        <% @region.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 <div class="container">
   <div class="row justify-content-center mt-4 ">
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">Edit Region Details</div>
         <div class="card-body">
+          <% if @region.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@region.errors.count, "error") %> prohibited this region from being saved:</h2>
+
+              <ul>
+                <% @region.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
           <%= form_with(model: @region, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
             <div class="form-group">
               <%= f.label :Region%>

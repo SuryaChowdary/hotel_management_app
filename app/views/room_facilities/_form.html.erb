@@ -2,7 +2,7 @@
   <div class="row justify-content-center mt-4 ">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">Add New Room Facility</div>
+        <div class="card-header">Edit Room Facility</div>
         <div class="card-body">
         <% if @room_facility.errors.any? %>
             <div id="error_explanation">
@@ -14,7 +14,7 @@
               </ul>
             </div>
           <% end %>
-          <%= form_with scope: :room_facility, url: room_facilities_path, local: true do |f| %>
+          <%= form_with(model: @room_facility, data: { remote: true}, method: :patch, id: 'edit-form') do |f| %>
             <div class="form-group">
               <%= f.label :Name%>
               <%= f.text_field :name, class: 'form-control' %>

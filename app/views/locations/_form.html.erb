@@ -1,20 +1,19 @@
-  <% if @location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
-
-      <ul>
-        <% @location.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 <div class="container">
   <div class="row justify-content-center mt-4 ">
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">Edit Location Details</div>
         <div class="card-body">
+          <% if @location.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+              <ul>
+                <% @location.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
           <%= form_with(model: @location, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
             <div class="form-group">
               <%= f.label :Country%>

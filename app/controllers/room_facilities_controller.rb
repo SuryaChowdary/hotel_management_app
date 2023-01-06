@@ -15,6 +15,10 @@ class RoomFacilitiesController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -29,15 +33,24 @@ class RoomFacilitiesController < ApplicationController
 
   def update
     if @room_facility.update(room_facility_params)
-      redirect_to @room_facility, notice: 'Room facility was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to @room_facility, notice: 'Location was successfully updated.' }
+        format.js { render inline: "location_reload();"}
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.js { render 'edit' }
+      end
     end
   end
 
   def destroy
     @room_facility.destroy
-    redirect_to room_facilities_url, notice: 'Room facility was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to room_facilities_url, notice: 'Location was successfully destroyed.' }
+      format.js   { render }
+    end
   end
 
   private
