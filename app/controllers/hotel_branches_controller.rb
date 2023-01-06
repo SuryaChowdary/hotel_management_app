@@ -60,7 +60,7 @@ class HotelBranchesController < ApplicationController
   end
 
   def hotel_params
-    params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website, :location_id)
+    params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website, :location_id, :client_id)
   end
 
 end

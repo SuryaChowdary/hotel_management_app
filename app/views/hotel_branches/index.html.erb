@@ -7,6 +7,7 @@
       <th> City </th>
       <th> State</th>
       <th> Location </th>
+      <th> Client </th>
       <th> Phone </th>
       <th> Website </th>
     </tr>
@@ -20,6 +21,7 @@
           <td><%= hotel.city %></td>
           <td><%= hotel.state %></td>
           <td><%= hotel.location.country if hotel.location%></td>
+          <td><%= hotel.client.name if hotel.client %></td>
           <td><%= hotel.phone %></td>
           <td><%= hotel.website %></td>
           <td><%= link_to 'Show', hotel_branch_path(hotel), class: 'btn btn-primary' %></td>
