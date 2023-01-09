@@ -1,0 +1,2 @@
+$("#form-container").toggle();
+$('#room-<%= @room.id%>').html('<%=j render 'room', locals: {room: @room} %>');

@@ -1,0 +1,2 @@
+$("#form-container").toggle();
+$('#client-<%= @client.id%>').html('<%=j render 'client', locals: { client: @client} %>');

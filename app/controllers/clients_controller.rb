@@ -33,10 +33,9 @@ class ClientsController < ApplicationController
 
   def update
     if @client.update(client_params)
-      flash[:notice] = "Client details are edited successfully"
       respond_to do |format|
         format.html { redirect_to @client }
-        format.js { render inline: "location_reload();"}
+        format.js { render content_type => 'application/javascript'}
       end
     else
       respond_to do |format|

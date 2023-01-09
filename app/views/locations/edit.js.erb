@@ -2,7 +2,3 @@ $(document).ready(function() {
   $('#editModal').modal('show');
   $('#form-container').html('<%= escape_javascript(render 'locations/form') %>');
 });
-
-function location_reload() {
-    window.location.reload();
-  }

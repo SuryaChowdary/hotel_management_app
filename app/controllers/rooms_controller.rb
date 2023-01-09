@@ -34,7 +34,7 @@ class RoomsController < ApplicationController
     if @room.update(room_params)
       respond_to do |format|
         format.html { redirect_to @room, notice: 'Room was successfully updated.' }
-        format.js { render inline: "room_reload();"}
+        format.js { render :content_type => 'application/javascript' }
       end
     else
       respond_to do |format|
