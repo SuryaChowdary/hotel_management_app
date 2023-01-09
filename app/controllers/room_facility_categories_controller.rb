@@ -4,7 +4,7 @@ class RoomFacilityCategoriesController < ApplicationController
 
   
   def index
-    @room_facility_categories = RoomFacilityCategory.all
+    @room_facility_categories = RoomFacilityCategory.all.order('created_at ASC')
   end
 
   def show
@@ -34,10 +34,9 @@ class RoomFacilityCategoriesController < ApplicationController
 
   def update
     if @room_facility_category.update(room_facility_category_params)
-      flash[:notice] = "Category details are edited successfully"
       respond_to do |format|
         format.html { redirect_to @room_facility_category }
-        format.js { render inline: "location_reload();"}
+        format.js { render :content_type => 'application/javascript'}
       end
     else
       respond_to do |format|

@@ -1,0 +1,2 @@
+$("#form-container").toggle();
+$('#room_facility-<%= @room_facility.id %>').html('<%=j render 'room_facility', locals: {room_facility: @room_facility} %>');

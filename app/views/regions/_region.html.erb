@@ -1,0 +1,5 @@
+<td><%= @region.name %></td>
+<td><%= @region.client.name if @region.client %></td>
+<td><%= link_to 'Show', region_path(@region), class: 'btn btn-secondary' %></td>
+<td><%= link_to 'Edit', edit_region_path(@region), data: { remote: true }, class: 'btn btn-primary' %></td>
+<td><%= button_to 'Delete', region_path(@region), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>

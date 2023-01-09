@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_action :require_user
   
   def index
-    @room = Room.all
+    @room = Room.all.order('created_at ASC')
   end
 
   def show

@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
   before_action :require_user
   
   def index
-    @client = Client.all
+    @client = Client.all.order('created_at ASC')
   end
 
   def show

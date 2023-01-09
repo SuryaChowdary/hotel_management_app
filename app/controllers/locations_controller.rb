@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
   before_action :require_user
   
   def index
-    @location = Location.all
+    @location = Location.all.order('created_at ASC')
   end
 
   def show

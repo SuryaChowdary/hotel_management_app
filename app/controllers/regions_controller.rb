@@ -4,7 +4,7 @@ class RegionsController < ApplicationController
   before_action :require_user
   
   def index
-    @region = Region.all
+    @region = Region.all.order('created_at ASC')
   end
 
   def show
@@ -36,7 +36,7 @@ class RegionsController < ApplicationController
     if @region.update(region_params)
       respond_to do |format|
         format.html { redirect_to @location, notice: 'Location was successfully updated.' }
-        format.js { render inline: "region_reload();"}
+        format.js { render :content_type => 'application/javascript'}
       end
     else
       respond_to do |format|
