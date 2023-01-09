@@ -4,7 +4,7 @@ class HotelBranchesController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
 
   def index
-    @hotel = HotelBranch.all
+    @hotel = HotelBranch.all.order('created_at ASC')
   end
 
   def show
@@ -33,10 +33,10 @@ class HotelBranchesController < ApplicationController
 
   def update
     if @hotel.update(hotel_params)
-      flash[:notice] = "Hotel details are edited successfully"
       respond_to do |format|
         format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
-        format.js { render inline: "location_reload();"}
+        format.js { render :content_type => 'application/javascript' }
+      
       end
     else
       respond_to do |format|

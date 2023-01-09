@@ -1,0 +1,12 @@
+          
+          <td><%= @hotel.name %></td>
+          <td><%= @hotel.address %></td>
+          <td><%= @hotel.city %></td>
+          <td><%= @hotel.state %></td>
+          <td><%= @hotel.location.country if @hotel.location%></td>
+          <td><%= @hotel.client.name if @hotel.client %></td>
+          <td><%= @hotel.phone %></td>
+          <td><%= @hotel.website %></td>
+          <td><%= link_to 'Show', hotel_branch_path(@hotel), class: 'btn btn-primary' %></td>
+          <td><%= link_to 'Edit', edit_hotel_branch_path(@hotel), data: { remote: true }, class: 'btn btn-secondary' %></td>
+          <td><%= button_to 'Delete', hotel_branch_path(@hotel), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
