@@ -15,7 +15,7 @@
           <td><%= region.name %></td>
           <td><%= region.client.name %></td>
           <td><%= link_to 'Show', region_path(region), class: 'btn btn-secondary' %></td>
-          <td><%= link_to 'Edit', edit_region_path(region), data: { remote: true }, class: 'btn btn-primary' %></td>
+          <td><%= link_to 'Edit', edit_region_path(region), {data: { remote: true }, class: 'btn btn-primary', "data-toggle": "modal", "data-target": "#editModal"} %></td>
           <td><%= button_to 'Delete', region_path(region), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
         </tr>
       <% end %>
@@ -24,7 +24,7 @@
 
 <br>
 
-<%= link_to 'New Region', new_region_path , data:{remote: true},class: 'btn btn-primary' %>
+<%= link_to 'New Region', new_region_path , {data: { remote: true }, class: 'btn btn-primary', "data-toggle": "modal", "data-target": "#newModal"} %>
 
 <div id="form-container"></div>
 
