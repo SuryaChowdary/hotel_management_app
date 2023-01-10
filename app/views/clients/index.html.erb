@@ -11,7 +11,7 @@
       <tr id = "client-<%= client.id %>">
         <td><%= client.name %></td>
         <td><%= link_to 'Show', client_path(client), class: 'btn btn-secondary' %></td>
-        <td><%= link_to 'Edit', edit_client_path(client),data: { remote: true }, class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_client_path(client),{data: { remote: true }, class: 'btn btn-primary',"data-toggle": "modal", "data-target": "editModal"} %></td>
         <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'%></td>
       </tr>
     <% end %>
@@ -21,6 +21,6 @@
 <br>
 
 
-<%= link_to 'New Client', new_client_path, data: {remote: true}, class: 'btn btn-primary' %>
+<%= link_to 'New Client', new_client_path, {data: {remote: true}, class: 'btn btn-primary',"data-toggle": "modal", "data-target": "newModal"} %>
 
 <div id = "form-container">
