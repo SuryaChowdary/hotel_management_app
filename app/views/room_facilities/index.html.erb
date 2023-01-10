@@ -9,7 +9,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="roomfacility-table">
     <% @room_facilities.each do |room_facility| %>
       <tr id= "room_facility-<%= room_facility.id%>">
         <td><%= room_facility.name %></td>
@@ -24,7 +24,7 @@
 
 <br>
 
-<%= link_to 'New Room Facility', new_room_facility_path, class: 'btn btn-primary'%>
+<%= link_to 'New Room Facility', new_room_facility_path, data: {remote: true},class: 'btn btn-primary'%>
 <br/>
 <br/>
 <%= link_to 'View Categories', room_facility_categories_path, class: 'btn btn-secondary' %>

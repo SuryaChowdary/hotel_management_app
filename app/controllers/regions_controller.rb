@@ -11,7 +11,7 @@ class RegionsController < ApplicationController
   end
 
   def new
-    @region = Region.new
+    @region = Region.new   
   end
 
   def edit
@@ -23,19 +23,21 @@ class RegionsController < ApplicationController
 
   def create
     @region = Region.new(region_params)
-
     if @region.save
-      flash[:notice] = "Region is added Successfully"
-      redirect_to regions_path(@region)
+      respond_to do |format|
+        format.html { redirect_to regions_path }
+        format.js { render :content_type => 'application/javascript' }
+      end
     else
       render 'new'
     end
   end
+  
 
   def update
     if @region.update(region_params)
       respond_to do |format|
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        format.html { redirect_to @region, notice: 'Region was successfully updated.' }
         format.js { render :content_type => 'application/javascript'}
       end
     else

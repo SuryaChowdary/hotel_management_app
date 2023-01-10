@@ -1,5 +1,4 @@
-<h1>Listing clients</h1>
-
+<h1> Listing clients</h1>
 <table class="table">
   <thead>
     <tr>
@@ -7,8 +6,7 @@
       <th>Actions</th>
     </tr>
   </thead>
-
-  <tbody>
+  <tbody id="client-table">
     <% @client.each do |client| %>
       <tr id = "client-<%= client.id %>">
         <td><%= client.name %></td>
@@ -22,6 +20,7 @@
 
 <br>
 
-<%= link_to 'New Client', new_client_path , class: 'btn btn-primary' %>
+
+<%= link_to 'New Client', new_client_path, data: {remote: true}, class: 'btn btn-primary' %>
 
 <div id = "form-container">

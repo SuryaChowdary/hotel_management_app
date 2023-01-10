@@ -9,7 +9,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id= "location-table">
    <% @location.each do |location| %>
       <tr id="location-<%= location.id %>">
         <td><%= location.country %></td>
@@ -22,8 +22,9 @@
   </tbody>
 </table>
 <br>
-<%= link_to 'New Location', new_location_path %>
+<%= link_to 'New Location', new_location_path, data: {remote: true}, class:'btn btn-primary' %>
 
 <div id="form-container"></div>
+
 
 

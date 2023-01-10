@@ -23,12 +23,14 @@ class RoomFacilitiesController < ApplicationController
 
   def create
     @room_facility = RoomFacility.new(room_facility_params)
-
     if @room_facility.save
-      redirect_to @room_facility, notice: 'Room facility was successfully created.'
-    else
-      render :new
-    end
+        respond_to do |format|
+          format.html { redirect_to room_facilities_path}
+          format.js {render :content_type => 'application/javascript'}
+        end
+      else
+        render 'new'
+      end
   end
 
   def update

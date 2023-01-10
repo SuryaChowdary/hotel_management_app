@@ -7,6 +7,6 @@
           <td><%= @hotel.client.name if @hotel.client %></td>
           <td><%= @hotel.phone %></td>
           <td><%= @hotel.website %></td>
-          <td><%= link_to 'Show', hotel_branch_path(@hotel), class: 'btn btn-primary' %></td>
-          <td><%= link_to 'Edit', edit_hotel_branch_path(@hotel), data: { remote: true }, class: 'btn btn-secondary' %></td>
-          <td><%= button_to 'Delete', hotel_branch_path(@hotel), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
+          <td><%= link_to 'Show', hotel_branch_path(@hotel), class: 'btn btn-primary hover-style' %></td>
+          <td><%= link_to 'Edit', edit_hotel_branch_path(@hotel), data: { remote: true }, class: 'btn btn-secondary hover-style' %></td>
+          <td><%= button_to 'Delete', hotel_branch_path(@hotel), class: 'btn btn-danger hover-style', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>

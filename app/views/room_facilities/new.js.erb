@@ -1,0 +1,4 @@
+$(document).ready(function() {
+  $('#newModal').modal('show');
+  $('#form-container').html('<%= escape_javascript(render 'room_facilities/newform') %>');
+});

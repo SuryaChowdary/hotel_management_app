@@ -24,8 +24,10 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if @location.save
-      flash[:notice] = "Location is added Successfully"
-      redirect_to locations_path(@location)
+      respond_to do |format|
+        format.html { redirect_to locations_path }
+        format.js { render :content_type => 'application/javascript' }
+      end
     else
       render 'new'
     end

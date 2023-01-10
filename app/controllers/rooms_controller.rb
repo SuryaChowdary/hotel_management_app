@@ -22,12 +22,14 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
-
     if @room.save
-      redirect_to rooms_path(@room), notice: 'Room was successfully created.'
+      respond_to do|format|
+        format.html {redirect_to rooms_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
     else
-      render 'new'  
-    end
+      render 'new'
+    end 
   end
 
   def update

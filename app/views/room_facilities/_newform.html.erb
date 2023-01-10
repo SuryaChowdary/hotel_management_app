@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row justify-content-center mt-4 ">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Add New Room Facility</div>
+        <div class="card-body">
+        <% if @room_facility.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@room_facility.errors.count, "error") %> prohibited this location from being saved:</h2>
+              <ul>
+                <% @room_facility.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <%= form_with scope: :room_facility, url: room_facilities_path, data:{remote: true} do |f| %>
+            <div class="form-group">
+              <%= f.label :Name%>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Category %><br/>
+              <%= f.select :room_facility_category_id, RoomFacilityCategory.all.collect {|x| [x.name, x.id]}, {} %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Room %><br/>
+              <%= f.select :room_id, Room.all.collect {|x| [x.name, x.id]}, {} %>
+            </div>
+            <div class="form-group">
+              <%= f.submit 'Add Room Facility', class: 'btn btn-primary mt-2' %>
+            </div>
+          <% end %>
+          <div class="card-footer text-muted">
+            <%= link_to 'Back', room_facilities_path, class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

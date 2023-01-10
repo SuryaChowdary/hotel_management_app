@@ -17,11 +17,13 @@ class RoomFacilityCategoriesController < ApplicationController
 
   def create
     @room_facility_category = RoomFacilityCategory.new(room_facility_category_params)
-
     if @room_facility_category.save
-      redirect_to @room_facility_category, notice: 'Room facility category was successfully created.'
+      respond_to do |format|
+        format.html { redirect_to room_facility_categories_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
     else
-      render :new
+      render 'new'
     end
   end
 

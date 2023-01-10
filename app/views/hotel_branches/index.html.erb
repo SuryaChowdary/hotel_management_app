@@ -13,7 +13,7 @@
     </tr>
     <tr>
   </thead>
-    <tbody>
+    <tbody id="hotel-table">
       <% @hotel.each do |hotel| %>
         <tr id="hotel-<%= hotel.id %>">
           <td><%= hotel.name %></td>
@@ -33,7 +33,7 @@
 </table>
 
 <p>
-  <%= link_to 'Add New Hotel' , new_hotel_branch_path , class: 'btn btn-primary' %>
+  <%= link_to 'Add New Hotel' , new_hotel_branch_path , data: {remote: true}, class: 'btn btn-primary' %>
 </p>
 
 <p>

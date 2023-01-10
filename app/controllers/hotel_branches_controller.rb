@@ -17,8 +17,10 @@ class HotelBranchesController < ApplicationController
   def create
     @hotel = HotelBranch.new(hotel_params)
     if @hotel.save
-      flash[:notice] = "Hotel Branch was added successfully"
-      redirect_to hotel_branches_path(@hotel)
+      respond_to do |format|
+        format.html { redirect_to hotel_branches_path }
+        format.js { render :content_type => 'application/javascript' }
+      end
     else
       render 'new'
     end
