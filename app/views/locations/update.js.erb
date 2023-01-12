@@ -1,2 +1,12 @@
-$("#form-container").toggle();
-$('#location-<%= @location.id%>').html('<%=j render 'location', locals: {location: @location} %>');
+
+
+<% if @location.errors.any? %>
+  // Errors are handled in the errors.js.erb file
+<% else %>
+  var locationId = "<%= @location.id %>";
+  var locationData = "<%= j render partial: 'location', locals: {location: @location} %>";
+  $("#location_" + locationId).replaceWith(locationData);
+  $('#editlocation_' + locationId).modal('hide');
+<% end %>
+
+

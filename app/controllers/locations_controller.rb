@@ -44,8 +44,7 @@ class LocationsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :edit }
-        format.js { render 'edit' }
+        format.js { render 'edit_errors' }
       end
     end
   end

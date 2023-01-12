@@ -1,2 +1,14 @@
  $("#edithotel_<%=@hotel.id%>").hide();
 
+
+
+<% if @hotel.errors.any? %>
+  // Errors are handled in the errors.js.erb file
+<% else %>
+  var hotelId = "<%= @hotel.id %>";
+  var hotelData = "<%= j render partial: 'hotel', locals: {hotel: @hotel} %>";
+  $("#hotel_" + hotelId).replaceWith(hotelData);
+  $('#edithotel_' + hotelId).modal('hide');
+<% end %>
+
+

@@ -98,3 +98,10 @@
 </div>
 
 
+
+<!-- $('#editlocation_<%=@location.id%>').append(); 
+var locationId = "<%= @location.id %>";
+var locationData = "<%= j render partial: 'location', locals: {location: @location} %>";
+$("#location_" + locationId).replaceWith(locationData);
+$('#editlocation_' + locationId).modal('hide');-->
+

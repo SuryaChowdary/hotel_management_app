@@ -1,4 +1,4 @@
-$(document).ready(function() {
-  $('#editModal').modal('show');
-  $('#form-container').html('<%= escape_javascript(render 'locations/edit_modal') %>');
-});
+
+  $('#editlocation_<%= @location.id %>').show();
+
+
