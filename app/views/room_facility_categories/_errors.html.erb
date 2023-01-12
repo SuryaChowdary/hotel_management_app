@@ -1,0 +1,10 @@
+ <% if @room_facility_category.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@room_facility_category.errors.count, "error") %> prohibited this location from being saved:</h2>
+              <ul>
+                <% @room_facility_category.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>

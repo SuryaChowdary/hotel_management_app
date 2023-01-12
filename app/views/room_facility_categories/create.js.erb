@@ -1,4 +1,2 @@
-$("#form-container").toggle();
-$("#roomfacilitycategory-table").append("<%= j(render 'room_facility_categories/room_facility_category', region: @region) %>");
-
-
+$("#roomfacilitycategory-table").append("<%= j(render 'room_facility_category', room_facility_category: @room_facility_category) %>");
+$("#closeNewForm").click()

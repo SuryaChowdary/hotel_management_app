@@ -1,4 +1,34 @@
-<td><%= @room_facility_category.name%></td>
-<td><%= link_to 'Show', @room_facility_category, class: 'btn btn-primary hover-style'%></td>
-<td><%= link_to 'Edit', edit_room_facility_category_path(@room_facility_category), data: {remote: true},class: 'btn btn-secondary hover-style' %></td>
-<td><%= link_to 'Destroy', @room_facility_category,class: 'btn btn-danger hover-style',method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<tr id="room_facility_category-<%=room_facility_category.id%>">
+  <td><%= room_facility_category.name%></td>
+  <td><%= link_to 'Show', room_facility_category, class: 'btn btn-primary'%></td>
+  <td><%= link_to 'Edit', edit_room_facility_category_path(room_facility_category), data: {remote: true, bs_toggle: "modal", bs_target: "#editroom_facility_category-#{room_facility_category.id}"},class: 'btn btn-secondary' %></td>
+  <td><%= link_to 'Destroy', room_facility_category,class: 'btn btn-danger',method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
+
+<div class="modal fade" id="editroom_facility_category-<%= room_facility_category.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Category</h5>
+        <button type="button" class="closeEditForm" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editerrors"></div>
+        <%= form_with(model: room_facility_category, data: { remote: true}, method: :patch, id: 'edit-form') do |f| %>
+          <div class="form-group">
+            <%= f.label :Name%>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.submit 'Update Category', class: 'btn btn-primary mt-2' %>
+          </div>
+        <% end %>
+        <div class="card-footer text-muted">
+          <%= link_to 'Back', room_facility_categories_path, class: 'btn btn-secondary' %>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>

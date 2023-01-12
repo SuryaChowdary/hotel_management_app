@@ -1,2 +1,8 @@
-$("#form-container").toggle();
-$('#room_facility_category-<%= @room_facility_category.id%>').html('<%= j render 'room_facility_category', locals: {room_facility_category: @room_facility_category} %>');
+<% if @room_facility_category.errors.any? %>
+  // Errors are handled in the errors.js.erb file
+<% else %>
+  var roomfacilitycategoryId = "<%= @room_facility_category.id %>";
+  var roomfacilitycategoryData = "<%= j render partial: 'room_facility_category', locals: {room_facility_category: @room_facility_category} %>";
+  $("#room_facility_category-" + roomfacilitycategoryId).replaceWith(roomfacilitycategoryData);
+  $('#editroom_facility_category-' + roomfacilitycategoryId).modal('hide');
+<% end %>
