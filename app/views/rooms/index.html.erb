@@ -11,23 +11,34 @@
   </thead>
 
   <tbody id="room-table">
-    <% @room.each do |room| %>
-      <tr id="room-<%= room.id %>">
-        <td><%= room.name %></td>
-        <td><%= room.capacity %></td>
-        <td><%= room.price %></td>
-        <td><%= room.hotel_branch.name %></td>
-        <td><%= link_to 'Show', room_path(room) , class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Edit', edit_room_path(room), data: { remote: true }, class: 'btn btn-secondary' %></td>
-        <td><%= button_to 'Delete', room_path(room), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
-      </tr>
+    <% @rooms.each do|room|%>
+      <%= render 'room' , room: room %>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<p><%= link_to 'New Room', new_room_path, data: {remote: true} ,class: 'btn btn-primary'%></p>
+<!-- Button trigger modal -->
+<button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
+  Add New Room
+</button>
+<!-- Modal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Room</h5>
+        <button type="button" id= "closeNewForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="errors"></div>
+        <%= render 'newform'%>
+      </div>
+    </div>
+  </div>
+</div> 
 
 
 <%= link_to 'View Room facilities', room_facilities_path, class: 'btn btn-secondary' %>

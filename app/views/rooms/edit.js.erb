@@ -1,5 +1,1 @@
-$(document).ready(function() {
-  $('#editModal').modal('show');
-  $('#form-container').html('<%= escape_javascript(render 'rooms/form') %>');
-});
-
+$('#editroom-<%=@room.id%>').show();

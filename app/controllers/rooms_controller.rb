@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_action :require_user
   
   def index
-    @room = Room.all.order('created_at ASC')
+    @rooms = Room.all.order('created_at ASC')
   end
 
   def show
@@ -28,7 +28,9 @@ class RoomsController < ApplicationController
         format.js {render :content_type => 'application/javascript'}
       end
     else
-      render 'new'
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
     end 
   end
 
@@ -40,8 +42,7 @@ class RoomsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :edit }
-        format.js { render 'edit' }
+        format.js { render 'edit_errors' }
       end
     end
   end

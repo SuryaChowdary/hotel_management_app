@@ -1,0 +1,6 @@
+  <% if @room.errors.any? %>
+  $("#editerrors").html("<%= j(render 'rooms/errors', room: @room) %>");
+  $("#editroom-<%=@room.id%>").show();
+  <% end %> 
+
+
