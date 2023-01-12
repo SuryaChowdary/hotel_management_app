@@ -1,4 +1,2 @@
-$("#form-container").toggle();
-$("#hotel-table").append("<%= j(render 'regions/region', region: @region) %>");
-
-
+$("#region-table").append("<%= j(render 'region', region: @region) %>");
+$("#closeNewForm").click()

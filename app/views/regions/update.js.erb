@@ -1,2 +1,11 @@
-$("#form-container").toggle();
-$('#region-<%= @region.id %>').html('<%=j render 'region', locals: {region: @region} %>');
+
+
+<% if @region.errors.any? %>
+  // Errors are handled in the errors.js.erb file
+<% else %>
+  var regionId = "<%= @region.id %>";
+  var regionData = "<%= j render partial: 'region', locals: {region: @region} %>";
+  $("#region_" + regionId).replaceWith(regionData);
+  $('#editregion_' + regionId).modal('hide');
+<% end %>
+

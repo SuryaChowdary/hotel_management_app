@@ -1,4 +1,4 @@
-$(document).ready(function() {
-  $('#editModal').modal('show');
-  $('#form-container').html('<%= escape_javascript(render 'regions/edit_modal') %>');
-});
+
+  $('#editregion_<%= @region.id %>').show();
+
+

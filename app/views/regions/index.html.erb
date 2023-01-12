@@ -9,22 +9,39 @@
     </tr>
   </thead>
 
-  <tbody id="hotel-table">
-      <% @region.each do |region| %>
-        <tr id="region-<%= region.id %>">
-          <td><%= region.name %></td>
-          <td><%= region.client.name %></td>
-          <td><%= link_to 'Show', region_path(region), class: 'btn btn-secondary' %></td>
-          <td><%= link_to 'Edit', edit_region_path(region), {data: { remote: true }, class: 'btn btn-primary', "data-toggle": "modal", "data-target": "#editModal"} %></td>
-          <td><%= button_to 'Delete', region_path(region), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
-        </tr>
+  <tbody id="region-table">
+      <% @regions.each do |region| %>
+        <%= render 'region' , region: region %>
       <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Region', new_region_path , {data: { remote: true }, class: 'btn btn-primary', "data-toggle": "modal", "data-target": "#newModal"} %>
+
+<!-- Button trigger modal -->
+<button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
+  Add New Region
+</button>
+<!-- Modal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Region</h5>
+        <button type="button" id= "closeNewForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="errors"></div>
+        <%= render 'newform'%>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
 
 <div id="form-container"></div>
 

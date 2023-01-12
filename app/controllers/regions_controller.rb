@@ -4,7 +4,8 @@ class RegionsController < ApplicationController
   before_action :require_user
   
   def index
-    @region = Region.all.order('created_at ASC')
+    @regions = Region.all.order('created_at ASC')
+    @region = Region.new
   end
 
   def show
@@ -29,7 +30,9 @@ class RegionsController < ApplicationController
         format.js { render :content_type => 'application/javascript' }
       end
     else
-      render 'new'
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
     end
   end
   
@@ -42,8 +45,7 @@ class RegionsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :edit }
-        format.js { render 'edit' }
+        format.js { render 'edit_errors' }
       end
     end
   end

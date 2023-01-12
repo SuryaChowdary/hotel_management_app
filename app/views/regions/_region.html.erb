@@ -1,5 +1,39 @@
-<td><%= @region.name %></td>
-<td><%= @region.client.name if @region.client %></td>
-<td><%= link_to 'Show', region_path(@region), class: 'btn btn-secondary hover-style' %></td>
-<td><%= link_to 'Edit', edit_region_path(@region), data: { remote: true }, class: 'btn btn-primary hover-style' %></td>
-<td><%= button_to 'Delete', region_path(@region), class: 'btn btn-danger hover-style', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
+<tr id="region_<%= region.id %>">
+  <td><%= region.name %></td>
+  <td><%= region.client.name %></td>
+  <td><%= link_to 'Show', region_path(region), class: 'btn btn-secondary' %></td>
+  <td><%= link_to 'Edit', edit_region_path(region),class: 'btn btn-primary', data: { remote: true, "bs_toggle": "modal", "bs_target": "#editregion_#{region.id}"} %></td>
+  <td><%= button_to 'Delete', region_path(region), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
+</tr>
+
+<div class="modal fade" id="editregion_<%= region.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Region</h5>
+        <button type="button" class="closeEditForm" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editerrors"></div>
+        <%= form_with(model: region, data: { remote: true}, id: 'edit-form' ) do |f| %>
+            <div class="form-group">
+              <%= f.label :Region%>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Client %><br/>
+              <%= f.select :client_id, Client.all.collect {|x| [x.name, x.id]}, {} %>
+            </div>
+            <div class="form-group">
+              <%= f.submit 'Update Region', class: 'btn btn-primary mt-2' %>
+            </div>
+          <% end %>
+          <div class="card-footer text-muted">
+            <%= link_to 'Back', regions_path, class: 'btn btn-secondary' %>
+          </div>
+       </div>
+    </div>
+  </div>
+</div> 
