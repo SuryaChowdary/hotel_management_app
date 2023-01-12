@@ -1,12 +1,70 @@
-          
-          <td><%= @hotel.name %></td>
-          <td><%= @hotel.address %></td>
-          <td><%= @hotel.city %></td>
-          <td><%= @hotel.state %></td>
-          <td><%= @hotel.location.country if @hotel.location%></td>
-          <td><%= @hotel.client.name if @hotel.client %></td>
-          <td><%= @hotel.phone %></td>
-          <td><%= @hotel.website %></td>
-          <td><%= link_to 'Show', hotel_branch_path(@hotel), class: 'btn btn-primary hover-style' %></td>
-          <td><%= link_to 'Edit', edit_hotel_branch_path(@hotel), data: { remote: true }, class: 'btn btn-secondary hover-style' %></td>
-          <td><%= button_to 'Delete', hotel_branch_path(@hotel), class: 'btn btn-danger hover-style', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
+  <tr id="hotel_<%= hotel.id %>">
+    <td><%= hotel.name %></td>
+    <td><%= hotel.address %></td>
+    <td><%= hotel.city %></td>
+    <td><%= hotel.state %></td>
+    <td><%= hotel.location.country if hotel.location%></td>
+    <td><%= hotel.client.name if hotel.client %></td>
+    <td><%= hotel.phone %></td>
+    <td><%= hotel.website %></td>
+    <td><%= link_to 'show', hotel_branch_path(hotel), class: 'btn btn-secondary' %></td>
+  <td><%= link_to 'Edit', edit_hotel_branch_path(hotel),  data: {remote: true , bs_toggle: "modal", bs_target: "#edithotel_#{hotel.id}"},  class: 'btn btn-primary' %></td>
+    <td><%= button_to 'Delete', hotel_branch_path(hotel), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
+  </tr>
+
+<!-- <div id="edithotel_<%= hotel.id %>" style= "display: none;"> -->
+<div class="modal fade" id="edithotel_<%= hotel.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Hotel</h5>
+        <button type="button" class="closeEditForm" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editerrors"></div>
+        <%= form_with(model: hotel, data: { remote: true}, method: :patch, id: 'editModal' ) do |f| %>
+          <div class="form-group">
+            <%= f.label :Name %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :Address %>
+            <%= f.text_field :address, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :City%>
+            <%= f.text_field :city, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :State %>
+            <%= f.text_field :state, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :Location %><br/>
+            <%= f.collection_select :location_id, Location.all, :id, :country , class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :Client %><br/>
+            <%= f.select :client_id,Client.all.collect {|x| [x.name, x.id]}, {} %>
+          </div>
+          <div class="form-group">
+            <%= f.label :Phone %>
+            <%= f.text_field :phone, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :Website %>
+            <%= f.text_field :website, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.submit 'Update Hotel', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+        <div class="card-footer text-muted">
+          <%= link_to 'Back', hotel_branches_path, class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

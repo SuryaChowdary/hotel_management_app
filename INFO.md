@@ -1,11 +1,30 @@
-
+<div class="modal fade" id="edit-hotel_#{@hotel.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Hotel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
         <div class="container">
           <div class="row justify-content-center mt-4 ">
             <div class="col-md-8">
               <div class="card">
-                <div class="card-header">Add a New Hotel</div>
+                <div class="card-header">Edit Hotel Details</div>
                 <div class="card-body">
-                  <%= form_with(model: @hotel, data: { remote: true}, method: :post) do |f| %>
+                  <% if @hotel.present? && @hotel.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@hotel.errors.count, "error") %> prohibited this location from being saved:</h2>
+                      <ul>
+                        <% @hotel.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <%= form_with(model: @hotel, data: { remote: true}, method: :post, id: 'editModal' ) do |f| %>
                     <div class="form-group">
                       <%= f.label :Name %>
                       <%= f.text_field :name, class: 'form-control' %>
@@ -24,7 +43,7 @@
                     </div>
                     <div class="form-group">
                       <%= f.label :Location %><br/>
-                      <%= f.collection_select :location_id, Location.all, :id, :country %>
+                      <%= f.collection_select :location_id, Location.all, :id, :country , class: 'form-control' %>
                     </div>
                     <div class="form-group">
                       <%= f.label :Client %><br/>
@@ -39,7 +58,7 @@
                       <%= f.text_field :website, class: 'form-control' %>
                     </div>
                     <div class="form-group">
-                      <%= f.submit 'Add Hotel', class: 'btn btn-primary' %>
+                      <%= f.submit 'Update Hotel', class: 'btn btn-primary' %>
                     </div>
                   <% end %>
                   <div class="card-footer text-muted">
@@ -50,4 +69,7 @@
             </div>
           </div>
         </div>
-      </div>
+       </div>
+    </div>
+  </div>
+</div> 

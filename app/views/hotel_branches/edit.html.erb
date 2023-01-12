@@ -1,1 +1,2 @@
-<%= render 'form' %>
+<td><%= link_to 'Edit Hotel', edit_hotel_branch_path(@hotel), class: 'btn btn-primary', data: { remote: true, bs_toggle: "modal", bs_target: "#edit-hotel_#{@hotel.id}" } %><td>
+      <%= render 'form' %>

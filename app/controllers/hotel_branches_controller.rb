@@ -4,7 +4,9 @@ class HotelBranchesController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
 
   def index
-    @hotel = HotelBranch.all.order('created_at ASC')
+    @hotels = HotelBranch.all.order('created_at ASC')
+    @hotel = HotelBranch.new
+
   end
 
   def show
@@ -18,11 +20,14 @@ class HotelBranchesController < ApplicationController
     @hotel = HotelBranch.new(hotel_params)
     if @hotel.save
       respond_to do |format|
-        format.html { redirect_to hotel_branches_path }
-        format.js { render :content_type => 'application/javascript' }
+        format.html { redirect_to hotels_path}
+        format.js {render :content_type => 'application/javascript'}
       end
     else
-      render 'new'
+      respond_to do |format|
+        #format.html { render :new}
+        format.js {render 'errors'}
+      end
     end
   end
 
@@ -36,14 +41,13 @@ class HotelBranchesController < ApplicationController
   def update
     if @hotel.update(hotel_params)
       respond_to do |format|
-        format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
-        format.js { render :content_type => 'application/javascript' }
-      
+        format.html { redirect_to hotels_path}
+        format.js {render :content_type => 'application/javascript'}
       end
     else
       respond_to do |format|
-        format.html { render :edit }
-        format.js { render 'edit' }
+        #format.html { render :edit}
+        format.js {render 'edit_errors'}
       end
     end
   end

@@ -1,0 +1,6 @@
+  <% if @hotel.errors.any? %>
+  $("#errors").html("<%= j(render 'hotel_branches/errors', hotel: @hotel) %>");
+  $('#newModal').modal('show');
+  <% end %> 
+
+
