@@ -4,7 +4,8 @@ class LocationsController < ApplicationController
   before_action :require_user
   
   def index
-    @location = Location.all.order('created_at ASC')
+    @locations = Location.all.order('created_at ASC')
+    @location = Location.new
   end
 
   def show
@@ -29,7 +30,9 @@ class LocationsController < ApplicationController
         format.js { render :content_type => 'application/javascript' }
       end
     else
-      render 'new'
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
     end
   end
 

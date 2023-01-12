@@ -1,4 +1,2 @@
-$("#form-container").toggle();
-$("#location-table").append("<%= j(render 'locations/location', location: @location) %>");
-
-
+$("#location-table").append("<%= j(render 'location', location: @location) %>");
+$("#closeNewForm").click()

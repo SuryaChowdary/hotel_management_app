@@ -1,0 +1,4 @@
+<% if @location.errors.any? %>
+  $('#errors').html("<%= j render 'locations/errors', location: @location %>")
+  $('#newModal').show()
+<% end %>

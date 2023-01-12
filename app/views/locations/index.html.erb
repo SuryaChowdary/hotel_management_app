@@ -10,19 +10,36 @@
   </thead>
 
   <tbody id= "location-table">
-   <% @location.each do |location| %>
-      <tr id="location-<%= location.id %>">
-        <td><%= location.country %></td>
-        <td><%= location.region.name %></td>
-        <td><%= link_to 'Show', location_path(location), class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Edit', edit_location_path(location), {data: { remote: true }, class: 'btn btn-secondary',"data-toggle": "modal", "data-target": "editModal"} %></td>
-        <td><%= button_to 'Delete', location_path(location), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
-      </tr>
+    <% @locations.each do|location|%>
+      <%= render 'location', location: location %>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'New Location', new_location_path, {data: {remote: true}, class:'btn btn-primary', "data-toggle": "modal", "data-target": "#newModal"} %>
+
+<!-- Button trigger modal -->
+<button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
+  Add New Location
+</button>
+<!-- Modal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Location</h5>
+        <button type="button" id= "closeNewForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="errors"></div>
+        <%= render 'newform'%>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
 
 <div id="form-container"></div>
 
