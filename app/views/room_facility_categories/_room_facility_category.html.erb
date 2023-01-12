@@ -2,7 +2,7 @@
   <td><%= room_facility_category.name%></td>
   <td><%= link_to 'Show', room_facility_category, class: 'btn btn-primary'%></td>
   <td><%= link_to 'Edit', edit_room_facility_category_path(room_facility_category), data: {remote: true, bs_toggle: "modal", bs_target: "#editroom_facility_category-#{room_facility_category.id}"},class: 'btn btn-secondary' %></td>
-  <td><%= link_to 'Destroy', room_facility_category,class: 'btn btn-danger',method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td><%= button_to 'Destroy', room_facility_category,class: 'btn btn-danger',remote: true,method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>
 
 <div class="modal fade" id="editroom_facility_category-<%= room_facility_category.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">

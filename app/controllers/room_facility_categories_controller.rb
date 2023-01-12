@@ -50,12 +50,13 @@ class RoomFacilityCategoriesController < ApplicationController
   end
 
   def destroy
+
     @room_facility_category.destroy
-    flash[:alert] = "Category is deleted successfully"
     respond_to do |format|
-      format.html { redirect_to room_facility_categories_url }
-      format.js   { render }
+      format.html { redirect_to room_facility_categories_url, notice: 'Location was successfully destroyed.' }
+      format.js { render }
     end
+    
   end
 
   private
