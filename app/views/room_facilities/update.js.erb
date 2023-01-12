@@ -1,2 +1,8 @@
-$("#form-container").toggle();
-$('#room_facility-<%= @room_facility.id %>').html('<%=j render 'room_facility', locals: {room_facility: @room_facility} %>');
+<% if @room_facility.errors.any? %>
+  // Errors are handled in the errors.js.erb file
+<% else %>
+  var roomfacilityId = "<%= @room_facility.id %>";
+  var roomfacilityData = "<%= j render partial: 'room_facility', locals: {room_facility: @room_facility} %>";
+  $("#room_facility-" + roomfacilityId).replaceWith(roomfacilityData);
+  $('#editroom_facility-' + roomfacilityId).modal('hide');
+<% end %>

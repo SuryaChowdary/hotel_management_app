@@ -11,21 +11,33 @@
 
   <tbody id="roomfacility-table">
     <% @room_facilities.each do |room_facility| %>
-      <tr id= "room_facility-<%= room_facility.id%>">
-        <td><%= room_facility.name %></td>
-        <td><%= room_facility.room_facility_category.name %></td>
-        <td><%= link_to 'Show', room_facility, class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Edit', edit_room_facility_path(room_facility), {data: { remote: true }, class: 'btn btn-secondary',"data-toggle": "modal", "data-target": "#editModal"} %></td>
-        <td><%= link_to 'Destroy', room_facility,class: 'btn btn-danger',remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+     <%= render 'room_facility' , room_facility: room_facility %>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Room Facility', new_room_facility_path, {data: {remote: true},class: 'btn btn-primary',"data-toggle": "modal", "data-target": "#newModal"}%>
-<br/>
+<!-- Button trigger modal -->
+<button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
+  Add New Region
+</button>
+<!-- Modal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Room Facility</h5>
+        <button type="button" id= "closeNewForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="errors"></div>
+        <%= render 'newform'%>
+      </div>
+    </div>
+  </div>
+</div> 
 <br/>
 <%= link_to 'View Categories', room_facility_categories_path, class: 'btn btn-secondary' %>
 

@@ -1,4 +1,2 @@
-$("#form-container").toggle();
-$("#roomfacility-table").append("<%= j(render 'room_facilities/room_facility', room_facility: @room_facility) %>");
-
-
+$("#roomfacility-table").append("<%= j(render 'room_facility', room_facility: @room_facility) %>");
+$("#closeNewForm").click()

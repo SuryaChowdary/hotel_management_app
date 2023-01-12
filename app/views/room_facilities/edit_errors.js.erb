@@ -1,0 +1,6 @@
+  <% if @room_facility.errors.any? %>
+  $("#editerrors").html("<%= j(render 'room_facilities/errors', room_facility: @room_facility) %>");
+   $("#editroom_facility-<%=@room_facility.id%>").show();
+  <% end %> 
+
+

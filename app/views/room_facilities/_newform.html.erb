@@ -4,16 +4,6 @@
       <div class="card">
         <div class="card-header">Add New Room Facility</div>
         <div class="card-body">
-        <% if @room_facility.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@room_facility.errors.count, "error") %> prohibited this location from being saved:</h2>
-              <ul>
-                <% @room_facility.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
           <%= form_with scope: :room_facility, url: room_facilities_path, data:{remote: true} do |f| %>
             <div class="form-group">
               <%= f.label :Name%>

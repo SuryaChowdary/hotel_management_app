@@ -1,5 +1,3 @@
-
-
 <% if @region.errors.any? %>
   // Errors are handled in the errors.js.erb file
 <% else %>
@@ -8,4 +6,3 @@
   $("#region_" + regionId).replaceWith(regionData);
   $('#editregion_' + regionId).modal('hide');
 <% end %>
-
