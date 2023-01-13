@@ -3,7 +3,9 @@ class ClientsController < ApplicationController
   before_action :require_user
   
   def index
-    @client = Client.all.order('created_at ASC')
+    @clients = Client.all.order('created_at ASC')
+    @client = Client.new
+
   end
 
   def show
@@ -23,13 +25,16 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
+    @client.user_id = current_user.id
     if @client.save
       respond_to do |format|
         format.html { redirect_to clients_path }
         format.js { render :content_type => 'application/javascript' }
       end
     else
-      render 'new'
+      respond_to do |format|
+        format.js {render 'errors'}
+      end
     end
   end
 
@@ -41,8 +46,7 @@ class ClientsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :edit }
-        format.js { render 'edit' }
+        format.js { render 'edit_errors' }
       end
     end
   end

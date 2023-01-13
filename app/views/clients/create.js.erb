@@ -1,4 +1,2 @@
-$("#form-container").toggle();
-$("#client-table").append("<%= j(render 'clients/client', client: @client) %>");
-
-
+$("#client-table").append("<%= j(render 'client', client: @client) %>");
+$("#closeNewForm").click()

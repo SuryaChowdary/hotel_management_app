@@ -1,0 +1,4 @@
+<% if @client.errors.any? %>
+  $("#errors").html("<%= j(render 'clients/errors', client: @client) %>");
+  $('#newModal').show()
+<% end %> 

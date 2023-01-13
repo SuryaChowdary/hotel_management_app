@@ -6,4 +6,5 @@ class User < ApplicationRecord
                     length: {maximum: 100},
                     format: {with: EMAIL_REGEX}
   has_secure_password
+  has_many :clients
 end

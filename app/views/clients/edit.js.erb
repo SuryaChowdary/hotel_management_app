@@ -1,5 +1,2 @@
-$(document).ready(function() {
-  $('#editModal').modal('show');
-  $('#form-container').html('<%= escape_javascript(render 'clients/edit_modal') %>');
-});
+$('#editclient-<%=@client.id%>').show();
 

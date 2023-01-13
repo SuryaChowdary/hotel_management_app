@@ -1,2 +1,8 @@
-$("#form-container").toggle();
-$('#client-<%= @client.id%>').html('<%=j render 'client', locals: { client: @client} %>');
+<% if @client.errors.any? %>
+  // Errors are handled in the errors.js.erb file
+<% else %>
+  var clientId = "<%= @client.id %>";
+  var clientData = "<%= j render partial: 'client', locals: {client: @client} %>";
+  $("#client-" + clientId).replaceWith(clientData);
+  $('#editclient-' + clientId).modal('hide');
+<% end %>

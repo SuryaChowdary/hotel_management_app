@@ -7,20 +7,36 @@
     </tr>
   </thead>
   <tbody id="client-table">
-    <% @client.each do |client| %>
-      <tr id = "client-<%= client.id %>">
-        <td><%= client.name %></td>
-        <td><%= link_to 'Show', client_path(client), class: 'btn btn-secondary' %></td>
-        <td><%= link_to 'Edit', edit_client_path(client),{data: { remote: true }, class: 'btn btn-primary',"data-toggle": "modal", "data-target": "editModal"} %></td>
-        <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'%></td>
-      </tr>
+    <% @clients.each do |client| %>
+      <%= render 'client', client: client %>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<!-- Button trigger modal -->
+<button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
+  Add New Client
+</button>
+<!-- Modal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Client</h5>
+        <button type="button" id= "closeNewForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="errors"></div>
+        <%= render 'newform' %>
+      </div>
+    </div>
+  </div>
+</div> 
 
 
-<%= link_to 'New Client', new_client_path, {data: {remote: true}, class: 'btn btn-primary',"data-toggle": "modal", "data-target": "newModal"} %>
+
 
 <div id = "form-container">
