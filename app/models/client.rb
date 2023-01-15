@@ -1,7 +1,8 @@
 class Client < ApplicationRecord
   has_many :regions
   has_many :locations, through: :regions
-  has_many :hotel_branches, through: :locations
+  has_many :hotel_branches
   validates :name, presence: true
   belongs_to :user
+  accepts_nested_attributes_for :hotel_branches
 end

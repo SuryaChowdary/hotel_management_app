@@ -8,4 +8,6 @@ class HotelBranch < ApplicationRecord
   validates :state, presence: true
   validates :phone, presence: true
   validates :website, presence: true
+  accepts_nested_attributes_for :rooms
+
 end

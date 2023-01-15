@@ -13,4 +13,14 @@ Rails.application.routes.draw do
   resources :locations
   resources :room_facility_categories
   resources :room_facilities
+  #post 'clients/:id/add_hotels', to: 'clients#add_hotels', as: :add_hotels
+  patch 'clients/:id/add_hotels', to: 'clients#add_hotels', as: 'add_hotels_client'
+
+  resources :clients do
+    member do
+      post :add_hotels
+    end
+  end
+  
+
 end

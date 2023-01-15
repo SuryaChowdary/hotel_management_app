@@ -1,0 +1,71 @@
+<tr id=client-<%= @client.id %>>
+      <td><%= @client.name %></td>
+      <td>
+        <% if @client.hotel_branches.empty? %>
+          <!-- Button trigger modal -->
+            <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#selectHotelModal">
+              SelectHotel
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="selectHotelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">select Hotels</h5>
+                    <button type="button" id= "closeselectForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <%= form_tag add_hotels_client_path(@client), method: :patch, remote: true do %>
+                      <%= select_tag "hotel_branch_ids[]", options_from_collection_for_select(HotelBranch.all, :id, :name), multiple: true %>
+                      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                      <%= submit_tag "Add Hotels", class: "btn btn-primary" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% else %>
+          <div id="hotels">
+              <% @client.hotel_branches.each do |hotel| %>
+                <li>
+                  <%= hotel.name %>
+                </li>
+              <% end %>
+          </div>
+        <% end %>
+      </td>
+      <td>
+        <% @client.hotel_branches.each do |hotel|%>
+          <% if hotel.rooms.empty? %>
+            <!-- Button trigger modal -->
+            <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#addRoom">
+              Add Room
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="addRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Room</h5>
+                    <button type="button" id= "closeAddRoom" class="close" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <%= render 'rooms/newform' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <% hotel.rooms.each do |room| %>
+              <li>
+                <%= room.name %>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>

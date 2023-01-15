@@ -9,6 +9,8 @@ class ClientsController < ApplicationController
   end
 
   def show
+    @hotel = HotelBranch.new
+
   end
 
   def new
@@ -46,7 +48,7 @@ class ClientsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.js { render 'edit_errors' }
+        format.js 
       end
     end
   end
@@ -59,6 +61,18 @@ class ClientsController < ApplicationController
     end
   end
 
+  def add_hotels
+    @client = Client.find(params[:id])
+    hotel_branch_ids = params[:hotel_branch_ids]
+    @hotel_branches = HotelBranch.where(id: hotel_branch_ids)
+    @client.hotel_branches << @hotel_branches
+    @client.save
+    respond_to do |format|
+      format.html {redirect_to @client}
+      format.js
+    end
+  end
+  
   private
 
     def set_client
@@ -66,6 +80,6 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:name, :user_id)
+      params.require(:client).permit(:name, :user_id, hotel_branch_ids: [])
     end
 end
