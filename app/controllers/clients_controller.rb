@@ -72,6 +72,35 @@ class ClientsController < ApplicationController
       format.js
     end
   end
+
+  def add_rooms
+    @client = Client.find(params[:id])
+    hotel_branch = HotelBranch.find(params[:room][:hotel_branch_id])
+    @room = hotel_branch.rooms.new(room_params)
+    if @room.save
+      respond_to do |format|
+        format.html { redirect_to @client }
+        format.js
+      end
+    else
+      flash[:alert] = "Error adding room"
+      redirect_to @client
+    end
+  end
+  
+  
+
+  # def remove_room
+  #   @client = Client.find(params[:id])
+  #   @room = Room.find(params[:room_id])
+  #   if @room.destroy
+  #     flash[:notice] = "Room removed successfully"
+  #   else
+  #     flash[:alert] = "Error removing room"
+  #   end
+  #   redirect_to @client
+  # end
+
   
   private
 
@@ -82,4 +111,10 @@ class ClientsController < ApplicationController
     def client_params
       params.require(:client).permit(:name, :user_id, hotel_branch_ids: [])
     end
+
+  def room_params
+    params.require(:room).permit(:name, :capacity, :price)
+  end
+
+  
 end
