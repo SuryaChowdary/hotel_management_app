@@ -97,4 +97,104 @@
           <% end %>
         <% end %>
       </td>
+      <td>
+        <% @client.hotel_branches.each do |hotel|%>
+          <% hotel.rooms.each do |room| %>
+            <% if room.room_facilities.empty?%>
+                <!-- Button trigger modal -->
+                <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#addRoomFacilityModal">
+                  Add Room Facility
+                </button>
+                <!-- Modal -->
+                <!-- Add Room Facility Modal -->
+                <div class="modal fade" id="addRoomFacilityModal" tabindex="-1" role="dialog" aria-labelledby="addRoomFacilityModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="addRoomFacilityModalLabel">Add Room Facility</h5>
+                        <button type="button" id="closeroomFacilityForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <%= form_tag add_room_facilities_client_path(@client), method: :patch, remote: true do %>
+                          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                          <div class="form-group">
+                            <label for="room_id">Select Room</label>
+                            <select class="form-control" id="room_id" name="room_facility[room_id]">
+                              <% @client.hotel_branches.each do |hotel| %>
+                                <% hotel.rooms.each do |room| %>
+                                  <option value="<%= room.id %>"><%= room.name %></option>
+                                <% end %>
+                              <% end %>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="room_facility[name]">
+                          </div>
+                          <div class="form-group">
+                            <label for="room_facility_category_id">Select Category</label>
+                            <select class="form-control" id="room_facility_category_id" name="room_facility[room_facility_category_id]">
+                              <% RoomFacilityCategory.all.each do |category| %>
+                                <option value="<%= category.id %>"><%= category.name %></option>
+                              <% end %>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <input type="submit" value="Add Room Facility" class="btn btn-primary mt-2" />
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <% else %>
+                <% room.room_facilities.each do |room_facility| %>
+                  <li>
+                    <%= room_facility.name %>
+                  </li>
+                <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <ul>
+          <% if @room_facility_categories.present? %>
+            <% @room_facility_categories.each do |category| %>
+              <li><%= category.name %></li>
+            <% end %>
+          <% else %>
+            <li>No Room Facility Categories Found</li>
+          <% end %>
+        </ul>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+          Add Room Facility Category
+        </button>
+        <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">Add Room Facility Category</h5>
+                <button type="button" id="closeCategoryModal" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= form_tag add_room_facility_categories_client_path(@client), method: :patch, remote: true do %>
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="room_facility_category[name]">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Add Room Facility Category" class="btn btn-primary mt-2" />
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <div>
+        </div>
+      </td>
 </tr>

@@ -9,7 +9,7 @@
     <td><%= hotel.website %></td>
     <td><%= link_to 'show', hotel_branch_path(hotel), class: 'btn btn-secondary' %></td>
   <td><%= link_to 'Edit', edit_hotel_branch_path(hotel),  data: {remote: true , bs_toggle: "modal", bs_target: "#edithotel_#{hotel.id}"},  class: 'btn btn-primary' %></td>
-    <td><%= button_to 'Delete', hotel_branch_path(hotel), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
+    <td><%= button_to 'Delete', hotel_branch_path(hotel), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure Rooms and its Associates will also be deleted?' }%></td>
   </tr>
 
 <!-- <div id="edithotel_<%= hotel.id %>" style= "display: none;"> -->

@@ -1,6 +1,6 @@
 class Room < ApplicationRecord
   belongs_to :hotel_branch
-  has_many :room_facilities
+  has_many :room_facilities, dependent: :destroy
   has_many :room_facility_categories, through: :room_facilities
   validates :name, presence: true
   validates :capacity, numericality: { only_integer: true, greater_than: 0 }

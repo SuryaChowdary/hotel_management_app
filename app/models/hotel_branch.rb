@@ -1,5 +1,5 @@
 class HotelBranch < ApplicationRecord
-  has_many :rooms
+  has_many :rooms , dependent: :destroy
   belongs_to :location
   belongs_to :client
   validates :name, presence: true

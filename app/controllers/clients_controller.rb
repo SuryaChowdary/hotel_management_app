@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
 
   def show
     @hotel = HotelBranch.new
-
+    @room_facility_categories = RoomFacilityCategory.all
   end
 
   def new
@@ -87,8 +87,35 @@ class ClientsController < ApplicationController
       redirect_to @client
     end
   end
-  
-  
+
+  def add_room_facilities
+    @client = Client.find(params[:id])
+    room = Room.find(params[:room_facility][:room_id])
+    @room_facility = room.room_facilities.new(room_facility_params)
+    if @room_facility.save
+      respond_to do |format|
+        format.html { redirect_to @client }
+        format.js
+      end
+    else
+      flash[:alert] = "Error adding room facility"
+      redirect_to @client
+    end
+  end
+
+  def add_room_facility_categories
+    @client = Client.find(params[:id])
+    @room_facility_category = RoomFacilityCategory.new(room_facility_category_params)
+    if @room_facility_category.save
+      respond_to do |format|
+        format.html { redirect_to @client }
+        format.js
+      end
+    else
+      flash[:alert] = "Error adding room facility category"
+      redirect_to @client
+    end
+  end
 
   # def remove_room
   #   @client = Client.find(params[:id])
@@ -112,9 +139,16 @@ class ClientsController < ApplicationController
       params.require(:client).permit(:name, :user_id, hotel_branch_ids: [])
     end
 
-  def room_params
-    params.require(:room).permit(:name, :capacity, :price)
-  end
+    def room_params
+      params.require(:room).permit(:name, :capacity, :price)
+    end
 
+    def room_facility_params
+      params.require(:room_facility).permit(:name, :room_id, :room_facility_category_id)
+    end
+
+    def room_facility_category_params
+      params.require(:room_facility_category).permit(:name)
+    end
   
 end

@@ -16,14 +16,17 @@ Rails.application.routes.draw do
   #post 'clients/:id/add_hotels', to: 'clients#add_hotels', as: :add_hotels
   patch 'clients/:id/add_hotels', to: 'clients#add_hotels', as: 'add_hotels_client'
   patch 'clients/:id/add_rooms', to: 'clients#add_rooms', as: 'add_rooms_client'
+  patch 'clients/:id/add_room_facilities', to: 'clients#add_room_facilities', as: 'add_room_facilities_client'
+  patch 'clients/:id/add_room_facility_categories', to: 'clients#add_room_facility_categories', as: 'add_room_facility_categories_client'
 
-
-  resources :clients do
-    member do
-      post :add_hotels
-      post :add_rooms
-    end
-  end
+  # resources :clients do
+  #   member do
+  #     post :add_hotels
+  #     post :add_rooms
+  #     post :add_room_facilities
+  #     post :add_room_facility_categories
+  #   end
+  # end
   
 
 end
