@@ -1,0 +1,4 @@
+$('#location_dropdown').html('');
+<% @locations.each do |location| %>
+  $('#location_dropdown').append("<option value='<%= location.id %>'><%= location.country %></option>");
+<% end %>

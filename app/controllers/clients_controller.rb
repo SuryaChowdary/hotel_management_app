@@ -11,6 +11,8 @@ class ClientsController < ApplicationController
   def show
     @hotel = HotelBranch.new
     @room_facility_categories = RoomFacilityCategory.all
+    @regions = Region.all
+    @locations = Location.all
   end
 
   def new
@@ -117,16 +119,17 @@ class ClientsController < ApplicationController
     end
   end
 
-  # def remove_room
-  #   @client = Client.find(params[:id])
-  #   @room = Room.find(params[:room_id])
-  #   if @room.destroy
-  #     flash[:notice] = "Room removed successfully"
-  #   else
-  #     flash[:alert] = "Error removing room"
-  #   end
-  #   redirect_to @client
-  # end
+  def add_regions
+    @client = Client.find(params[:id])
+    region_ids = params[:region_ids]
+    @regions = Region.where(id: region_ids)
+    @client.regions << @regions
+    @client.save
+    respond_to do |format|
+      format.html {redirect_to @client}
+      format.js
+    end
+  end
 
   
   private

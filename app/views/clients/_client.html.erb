@@ -2,7 +2,7 @@
         <td><%= client.name %></td>
         <td><%= link_to 'Show', client_path(client), class: 'btn btn-secondary' %></td>
         <td><%= link_to 'Edit', edit_client_path(client),data: { remote: true , bs_toggle: "modal", bs_target: "#editclient-#{client.id}"}, class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'%></td>
+        <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure, All the associates will get deleted?' } , class: 'btn btn-danger'%></td>
       </tr>
 
       <!-- Edit Modal -->

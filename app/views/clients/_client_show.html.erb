@@ -40,10 +40,11 @@
         <% @client.hotel_branches.each do |hotel|%>
           <% if hotel.rooms.empty? %>
             <!-- Button trigger modal -->
-            <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#addRoomModal">
-              Add Room
-            </button>
-            <!-- Modal -->
+            <li>
+              <button type="button", class="btn btn-primary mt-2", data-bs-toggle="modal", data-bs-target="#addRoomModal">
+                Add Room
+              </button>
+            </li>
             <!-- Add Room Modal -->
             <div class="modal fade" id="addRoomModal" tabindex="-1" role="dialog" aria-labelledby="addRoomModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -81,13 +82,11 @@
                       <div class="form-group">
                           <input type="submit" value="Add Room" class="btn btn-primary mt-2" />
                       </div>
-
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            
           <% else %>
             <% hotel.rooms.each do |room| %>
               <li>
@@ -102,9 +101,11 @@
           <% hotel.rooms.each do |room| %>
             <% if room.room_facilities.empty?%>
                 <!-- Button trigger modal -->
-                <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#addRoomFacilityModal">
-                  Add Room Facility
-                </button>
+                <li>
+                  <button type="button", class="btn btn-primary mt-2", data-bs-toggle="modal", data-bs-target="#addRoomFacilityModal">
+                    Add Room Facility
+                  </button>
+                </li>
                 <!-- Modal -->
                 <!-- Add Room Facility Modal -->
                 <div class="modal fade" id="addRoomFacilityModal" tabindex="-1" role="dialog" aria-labelledby="addRoomFacilityModalLabel" aria-hidden="true">
@@ -197,4 +198,46 @@
           <div>
         </div>
       </td>
+      <td>
+        <% if @client.regions.empty? %>
+          <!-- Button trigger modal -->
+            <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#selectRegionModal">
+              Select Regions
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="selectRegionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">select Regions</h5>
+                    <button type="button" id= "closeselectRegionForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class= "form-group">
+                      <%= form_tag add_regions_client_path(@client), method: :patch, remote: true do %>
+                        <%= select_tag "region_ids[]", options_from_collection_for_select(Region.all, :id, :name), multiple: true, id: "region_dropdown" %>
+                        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                        <%= submit_tag "Add Regions", class: "btn btn-primary" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% else %>
+          <div id="regions">
+              <% @client.regions.each do |region| %>
+                <li>
+                  <%= region.name %>
+                </li>
+              <% end %>
+          </div>
+        <% end %>
+      </td>
 </tr>
+
+
+
+
