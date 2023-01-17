@@ -202,8 +202,8 @@
       <td>
         <% if @client.regions.empty? %>
           <%= form_tag(add_location_client_path(@client), method: :patch, remote: true) do %>
-            <%= select_tag "region", options_from_collection_for_select(Region.all, "id", "name"), prompt: "Region", id: "region" %>
-            <%= select_tag "location", options_from_collection_for_select(Location.all, "id", "country"), prompt: "Location", id: "location" %>
+            <%= select_tag "region_ids[]", options_from_collection_for_select(Region.all, "id", "name"), prompt: "Region", id: "region", multiple: true %>
+            <%= select_tag "location_ids[]", options_for_select(Location.all.map{|location| [location.country, location.id] }), prompt: "Location", id: "location" , multiple: true %>
             <%= submit_tag("Add Location", class: "btn btn-primary") %>
           <% end %>
         <% else %>
@@ -211,22 +211,24 @@
                   <li>
                     <%= region.name %>
                   </li>
-                  <%region.locations.each do |location|%>
-                  <li>
-                    <%= location.country  %>
-                  </li>
-                <%end%>
+                  <ul>
+                    <% region.locations.each do |location|%>
+                    <li>
+                      <%= location.country  %>
+                    </li>
+                  <%end%>
+                </ul>
               <% end %>
         <%end %>
     </td>
 
 <script>
   $(document).on('change', '#region', function() {
-    var selectedRegion = $(this).val();
+    var selectedRegions = $(this).val();
     $.ajax({
       url: "<%= locations_by_region_client_path(@client) %>",
       method: "GET",
-      data: { region_id: selectedRegion },
+      data: { regions: selectedRegions },
       success: function(data) {
         $("#location").html(data);
       }

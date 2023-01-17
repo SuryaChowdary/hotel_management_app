@@ -154,11 +154,17 @@ class ClientsController < ApplicationController
   end
 
   def locations_by_region
-    @locations = Location.where("region_id = ?", params[:region_id])
+    @locations = Location.where(region_id: params[:regions])
     respond_to do |format|
-      format.js 
+      format.js
     end
   end
+  # def locations_by_region
+  #   @locations = Location.where("region_id = ?", params[:region_id])
+  #   respond_to do |format|
+  #     format.js 
+  #   end
+  # end
   
   private
 

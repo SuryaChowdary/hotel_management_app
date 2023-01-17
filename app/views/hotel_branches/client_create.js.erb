@@ -1,8 +1,0 @@
-$("#add-hotel-btn").on("click", function() {
-  var selectedHotelIds = $("#hotel_ids").val();
-  for (var i = 0; i < selectedHotelIds.length; i++) {
-    var hotelId = selectedHotelIds[i];
-    var hotelName = $("#hotel_ids option[value='" + hotelId + "']").text();
-    $("#hotel-table").append("<tr><td>" + hotelName + "</td></tr>");
-  }
-});
