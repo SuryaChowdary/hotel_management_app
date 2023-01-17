@@ -119,17 +119,63 @@ class ClientsController < ApplicationController
     end
   end
 
-  def add_regions
-    @client = Client.find(params[:id])
-    region_ids = params[:region_ids]
-    @regions = Region.where(id: region_ids)
-    @client.regions << @regions
-    @client.save
+  def locations_by_region
+    @locations = Location.where("region_ids = ?", params[:region_ids])
     respond_to do |format|
-      format.html {redirect_to @client}
-      format.js
+      format.js 
     end
-  end
+  end 
+
+
+  # def location_search
+  #   if params[:region].present? && params[:region].strip != ""
+  #     @locations = Location.where("region_id = ?", params[:region])
+  #   else
+  #     @locations = Location.all
+  #   end
+  # end
+
+#   def add_region_and_locations
+#     @client = Client.find(params[:id])
+#     @regions = Region.all
+#     region_ids = params[:region_ids]
+#     @locations = Location.where(region_id: region_ids)
+#   end
+
+  
+
+  # def add_region_and_locations
+  #   @client = Client.find(params[:id])
+  #   @regions = Region.all
+  #   @locations = []
+  #   if params[:region_id].present?
+  #     @locations = Region.find(params[:region_id]).locations
+  #   end
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
+
+  # def add_regions
+  #   @client = Client.find(params[:id])
+  #   region_ids = params[:region_ids]
+  #   @regions = Region.where(id: region_ids)
+  #   @client.regions << @regions
+  #   @client.save
+  #   respond_to do |format|
+  #     format.html {redirect_to @client}
+  #     format.js
+  #   end
+  # end
+
+
+  # def locations_by_region
+  #   @locations = Region.find(params[:region_ids]).map(&:locations).flatten
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
+
 
   
   private

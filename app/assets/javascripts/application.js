@@ -2,6 +2,7 @@
 //= require rails-ujs
 //= require popper
 //= require bootstrap/dist/js/bootstrap
+
 import '@popperjs/core';
 
 import { createPopper } from '@popperjs/core';

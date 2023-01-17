@@ -200,32 +200,37 @@
       </td>
       <td>
         <% if @client.regions.empty? %>
-          <!-- Button trigger modal -->
-            <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#selectRegionModal">
-              Select Regions
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="selectRegionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">select Regions</h5>
-                    <button type="button" id= "closeselectRegionForm" class="close" data-bs-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class= "form-group">
-                      <%= form_tag add_regions_client_path(@client), method: :patch, remote: true do %>
-                        <%= select_tag "region_ids[]", options_from_collection_for_select(Region.all, :id, :name), multiple: true, id: "region_dropdown" %>
-                        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                        <%= submit_tag "Add Regions", class: "btn btn-primary" %>
-                      <% end %>
-                    </div>
-                  </div>
+          <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#addRegionAndLocationsModal">
+            Add Regions and Locations
+          </button>
+          <div class="modal fade" id="addRegionAndLocationsModal" tabindex="-1" role="dialog" aria-labelledby="addRegionAndLocationsModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addRegionAndLocationsModalTitle">Add Regions and Locations</h5>
+                  <button type="button" id= "closeAddRegionAndLocationsForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <%= form_tag locations_by_region_client_path(@client), method: :get, remote: true do %>
+                        <div class="form-group">
+                          <label for="region">Select Region</label>
+                          <%= select_tag 'region_ids', options_from_collection_for_select(Region.all, :id, :name), prompt: "Select Region", multiple: true %>
+                        </div>
+                        <div class="form-group">
+                          <label for="location_ids">Select Locations</label>
+                          <%= select_tag 'location_ids', options_for_select([["Select a region first", ""]]), class: 'form-control', id: 'location_dropdown', disabled: true %>
+                        </div>
+                      <%= submit_tag("Add Region and Location", class: "btn btn-primary") %>
+
+                    <% end %>
+
+                </div>
                 </div>
               </div>
             </div>
+          </div>
         <% else %>
           <div id="regions">
               <% @client.regions.each do |region| %>
@@ -237,6 +242,25 @@
         <% end %>
       </td>
 </tr>
+<script>
+ $(document).on('change', '#region_ids', function() {
+    var selectedRegionIds = $(this).val();
+    $.ajax({
+      url: $(this).data('url'),
+      method: $(this).data('method'),
+      data: { region_ids: selectedRegionIds },
+      success: function(data) {
+        $('#location_dropdown').html('');
+        $.each(data, function(index, location) {
+          $('#location_dropdown').append(`<option value="${location.id}">${location.country}</option>`);
+        });
+        $('#location_dropdown').prop('disabled', false);
+      }
+    });
+  });
+
+</script>
+
 
 
 
