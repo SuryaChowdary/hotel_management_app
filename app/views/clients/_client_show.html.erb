@@ -200,66 +200,40 @@
       </td>
       <td>
         <% if @client.regions.empty? %>
-          <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#addRegionAndLocationsModal">
-            Add Regions and Locations
-          </button>
-          <div class="modal fade" id="addRegionAndLocationsModal" tabindex="-1" role="dialog" aria-labelledby="addRegionAndLocationsModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="addRegionAndLocationsModalTitle">Add Regions and Locations</h5>
-                  <button type="button" id= "closeAddRegionAndLocationsForm" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <%= form_tag locations_by_region_client_path(@client), method: :get, remote: true do %>
-                        <div class="form-group">
-                          <label for="region">Select Region</label>
-                          <%= select_tag 'region_ids', options_from_collection_for_select(Region.all, :id, :name), prompt: "Select Region", multiple: true %>
-                        </div>
-                        <div class="form-group">
-                          <label for="location_ids">Select Locations</label>
-                          <%= select_tag 'location_ids', options_for_select([["Select a region first", ""]]), class: 'form-control', id: 'location_dropdown', disabled: true %>
-                        </div>
-                      <%= submit_tag("Add Region and Location", class: "btn btn-primary") %>
-
-                    <% end %>
-
-                </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <%= form_tag(add_location_client_path(@client), method: :patch, remote: true) do %>
+            <%= select_tag "region", options_from_collection_for_select(Region.all, "id", "name"), prompt: "Region", id: "region" %>
+            <%= select_tag "location", options_from_collection_for_select(Location.all, "id", "country"), prompt: "Location", id: "location" %>
+            <%= submit_tag("Add Location", class: "btn btn-primary") %>
+          <% end %>
         <% else %>
-          <div id="regions">
               <% @client.regions.each do |region| %>
-                <li>
-                  <%= region.name %>
-                </li>
+                  <li>
+                    <%= region.name %>
+                  </li>
+                  <%region.locations.each do |location|%>
+                  <li>
+                    <%= location.country %>
+                  </li>
+                <%end%>
               <% end %>
-          </div>
-        <% end %>
-      </td>
-</tr>
+        <%end %>
+    </td>
+
 <script>
- $(document).on('change', '#region_ids', function() {
-    var selectedRegionIds = $(this).val();
+  $(document).on('change', '#region', function() {
+    var selectedRegion = $(this).val();
     $.ajax({
-      url: $(this).data('url'),
-      method: $(this).data('method'),
-      data: { region_ids: selectedRegionIds },
+      url: "<%= locations_by_region_client_path(@client) %>",
+      method: "GET",
+      data: { region_id: selectedRegion },
       success: function(data) {
-        $('#location_dropdown').html('');
-        $.each(data, function(index, location) {
-          $('#location_dropdown').append(`<option value="${location.id}">${location.country}</option>`);
-        });
-        $('#location_dropdown').prop('disabled', false);
+        $("#location").html(data);
       }
     });
   });
-
 </script>
+
+</tr>
 
 
 

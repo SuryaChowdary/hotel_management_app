@@ -126,7 +126,136 @@ class ClientsController < ApplicationController
     end
   end 
 
+  def add_regions
+    @client = Client.find(params[:id])
+    region_ids = params[:region_ids]
+    @regions = Region.where(id: region_ids)
+    @client.regions << @regions
+    @client.save
+    respond_to do |format|
+      format.html {redirect_to @client}
+      format.js
+    end
+  end
 
+  # def add_location
+  #   @client = Client.find(params[:id])
+  #   @region = Region.find(params[:region_id])
+  #   @location = Location.find(params[:location_id])
+  #   @region.locations << @location
+  #   @client.regions << @region
+  #   respond_to do |format|
+  #     if @client.save
+  #       format.js { render :add_location }
+  #     end
+  #   end
+  # end
+  # def add_location
+  #   @client = Client.find(params[:id])
+  #   if Region.exists?(params[:region].to_i)
+  #     region = Region.find(params[:region].to_i)
+  #     if Location.exists?(params[:location].to_i)
+  #       location = Location.find(params[:location].to_i)
+  #       if region.locations.include?(location)
+  #         @client.locations << location
+  #         @location = location
+  #         if @client.save
+  #           respond_to do |format|
+  #             format.js { render :add_location }
+  #           end
+  #         end
+  #       else
+  #         # Handle the case where the location is not associated with the selected region
+  #       end
+  #     else
+  #       # Handle the case where the location does not exist
+  #     end
+  #   else
+  #     # Handle the case where the region does not exist
+  #   end
+  # end
+  
+
+  # def add_location
+  #     @client = Client.find(params[:id])
+  #     if !params[:location].blank?
+  #       location = Location.find(params[:location].to_i)
+  #       @client.locations << location
+  #       @location = location
+  #     end
+  #     respond_to do |format|
+  #       if @client.save
+  #         format.js { render :add_location }
+  #       end
+  #     end
+  # end
+
+
+  def add_location
+    @client = Client.find(params[:id])
+    if params[:region].present? && Region.exists?(params[:region].to_i)
+      region = Region.find(params[:region].to_i)
+      @client.regions << region
+    end
+    respond_to do |format|
+      if @client.save
+        format.js { render :add_location }
+      end
+    end
+  end
+
+  # def add_location
+  #   @client = Client.find(params[:id])
+  #   if Region.exists?(params[:region].to_i)
+  #     region = Region.find(params[:region].to_i)
+  #     region.locations.each do |location|
+  #       @client.locations << location
+  #     end
+  #   else
+  #     # handle the case where the region doesn't exist
+  #   end
+  #   respond_to do |format|
+  #     if @client.save
+  #       format.js { render :add_location }
+  #     end
+  #   end
+  # end
+
+
+
+  # def add_location
+  #   @client = Client.find(params[:id])
+  #   location = Location.find(params[:location].to_i)
+  #   @client.locations << location
+  #   respond_to do |format|
+  #     if @client.save
+  #       format.js { render :add_location }
+  #     end
+  #   end
+  # end
+  
+  # def add_location
+  #   @client = Client.find(params[:id])
+  #   @client.locations << @location
+  #   if !params[:location].blank?
+  #     location = Location.find(params[:location].to_i)
+  #     @client.locations << location
+  #   end
+  #   respond_to do |format|
+  #     if @client.save
+  #       format.js { render :add_location }
+  #     end
+  #   end
+  # end
+
+
+  def locations_by_region
+    @locations = Location.where("region_id = ?", params[:region_id])
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
   # def location_search
   #   if params[:region].present? && params[:region].strip != ""
   #     @locations = Location.where("region_id = ?", params[:region])
@@ -199,5 +328,4 @@ class ClientsController < ApplicationController
     def room_facility_category_params
       params.require(:room_facility_category).permit(:name)
     end
-  
 end
