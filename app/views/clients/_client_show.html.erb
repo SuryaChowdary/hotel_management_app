@@ -198,6 +198,7 @@
           <div>
         </div>
       </td>
+
       <td>
         <% if @client.regions.empty? %>
           <%= form_tag(add_location_client_path(@client), method: :patch, remote: true) do %>
@@ -212,7 +213,7 @@
                   </li>
                   <%region.locations.each do |location|%>
                   <li>
-                    <%= location.country %>
+                    <%= location.country  %>
                   </li>
                 <%end%>
               <% end %>
