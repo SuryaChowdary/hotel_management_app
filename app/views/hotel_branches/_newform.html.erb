@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                       <%= f.label :Location %><br/>
-                      <%= f.collection_select :location_id, Location.all, :id, :country %>
+                      <%= f.collection_select :location_id, Location.all, :id, :name %>
                     </div>
                     <div class="form-group">
                       <%= f.label :Client %><br/>

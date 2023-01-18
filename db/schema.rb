@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_18_042246) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_18_114403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "client_regions", force: :cascade do |t|
+    t.integer "client_id"
+    t.integer "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -49,11 +56,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_042246) do
   end
 
   create_table "regions", force: :cascade do |t|
-    t.bigint "client_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_regions_on_client_id"
   end
 
   create_table "room_facilities", force: :cascade do |t|
@@ -91,7 +96,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_042246) do
   end
 
   add_foreign_key "locations", "regions"
-  add_foreign_key "regions", "clients"
   add_foreign_key "room_facilities", "room_facility_categories"
   add_foreign_key "room_facilities", "rooms"
   add_foreign_key "rooms", "hotel_branches"

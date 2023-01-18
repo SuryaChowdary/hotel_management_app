@@ -14,6 +14,7 @@ class ClientsController < ApplicationController
     @regions = Region.all
     @locations = Location.all
   end
+  
 
   def new
     @client = Client.new
@@ -30,7 +31,9 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     @client.user_id = current_user.id
+   
     if @client.save
+      @client.regions << params[:regions]
       respond_to do |format|
         format.html { redirect_to clients_path }
         format.js { render :content_type => 'application/javascript' }
@@ -119,24 +122,7 @@ class ClientsController < ApplicationController
     end
   end
 
-  def locations_by_region
-    @locations = Location.where("region_ids = ?", params[:region_ids])
-    respond_to do |format|
-      format.js 
-    end
-  end 
-
-  def add_regions
-    @client = Client.find(params[:id])
-    region_ids = params[:region_ids]
-    @regions = Region.where(id: region_ids)
-    @client.regions << @regions
-    @client.save
-    respond_to do |format|
-      format.html {redirect_to @client}
-      format.js
-    end
-  end
+  
   
   def locations_by_region
     @locations = Location.where(region_id: params[:regions])
@@ -159,7 +145,53 @@ class ClientsController < ApplicationController
 end
 
 
-  # def add_location
+ 
+  
+  private
+
+    def set_client
+      @client = Client.find(params[:id])
+    end
+
+    def client_params
+      params.require(:client).permit(:name, :user_id, region_ids: [], location_ids: [])
+    end
+
+    # def client_params
+    #   params.require(:client).permit(:name, :user_id, hotel_branch_ids: [])
+    # end
+
+    def room_params
+      params.require(:room).permit(:name, :capacity, :price)
+    end
+
+    def room_facility_params
+      params.require(:room_facility).permit(:name, :room_id, :room_facility_category_id)
+    end
+
+    def room_facility_category_params
+      params.require(:room_facility_category).permit(:name)
+    end
+end
+# def locations_by_region
+  #   @locations = Location.where("region_ids = ?", params[:region_ids])
+  #   respond_to do |format|
+  #     format.js 
+  #   end
+  # end 
+
+  # def add_regions
+  #   @client = Client.find(params[:id])
+  #   region_ids = params[:region_ids]
+  #   @regions = Region.where(id: region_ids)
+  #   @client.regions << @regions
+  #   @client.save
+  #   respond_to do |format|
+  #     format.html {redirect_to @client}
+  #     format.js
+  #   end
+  # end
+   # def add_location
   #   @client = Client.find(params[:id])
   #   if params[:region].present? && Region.exists?(params[:region].to_i)
   #     region = Region.find(params[:region].to_i)
@@ -184,26 +216,3 @@ end
   #     format.js 
   #   end
   # end
-  
-  private
-
-    def set_client
-      @client = Client.find(params[:id])
-    end
-
-    def client_params
-      params.require(:client).permit(:name, :user_id, hotel_branch_ids: [])
-    end
-
-    def room_params
-      params.require(:room).permit(:name, :capacity, :price)
-    end
-
-    def room_facility_params
-      params.require(:room_facility).permit(:name, :room_id, :room_facility_category_id)
-    end
-
-    def room_facility_category_params
-      params.require(:room_facility_category).permit(:name)
-    end
-end

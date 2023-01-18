@@ -218,8 +218,8 @@
                 </div>
                 <div class="modal-body">
                   <%= form_tag(add_location_client_path(@client), method: :patch, remote: true,id: "selectForm") do %>
-                    <%= select_tag "region_ids[]", options_from_collection_for_select(Region.all, "id", "name"), prompt: "Region", id: "region", multiple: true %>
-                    <%= select_tag "location_ids[]", options_for_select(Location.all.map{|location| [location.country, location.id] }), prompt: "Location", id: "location" , multiple: true %>
+                    <%= select_tag "region_ids[]", options_from_collection_for_select(Region.all, "id", "name"), prompt: "Region", id: "region", multiple: true %><br/>
+                    <%= select_tag "location_ids[]", options_for_select([["Select Locations"]], prompt: "select"), id: "location" , multiple: true %>
                     <%= submit_tag("Add Location", class: "btn btn-primary", id: "addLocation") %>
                   <% end %>
                 </div>
@@ -228,20 +228,17 @@
           </div
 
         <% else %>
-              <div id="regions">
-                <% @client.regions.each do |region| %>
-                  <li>
-                    <%= region.name %>
-                  </li>
-                  <ul>
-                    <% region.locations.each do |location|%>
-                      <li>
-                        <%= location.country  %>
-                      </li>
-                    <%end%>
-                  </ul>
-                <% end %>
-              </div>
+           <ul>
+            <% @client.regions.each do |region| %>
+              <li>
+              <%= region.name %>
+              </li>
+                <%region.locations.each do|location|%>
+                  <%=location.name%>
+                <%end%>
+            <% end %>
+          </ul>
+          
         <%end %>
     </td>
 

@@ -34,6 +34,28 @@
       </div>
     </div>
   </div>
+  <script>
+//  function getLocations(){
+//   var region = $("#region").val();
+//   $.ajax({
+//     url: '/locations_by_region',
+//     type: 'GET',
+//     data: {regions: region},
+//     dataType: 'script'
+//   });
+// }
+$(document).on('change', '#region', function getLocations() {
+    var selectedRegions = $(this).val();
+    $.ajax({
+      url: "/locations_by_region",
+      method: "GET",
+      data: { regions: selectedRegions },
+      success: function(data) {
+        $("#location").html(data);
+      }
+    });
+  });
+</script>
 </div> 
 
 

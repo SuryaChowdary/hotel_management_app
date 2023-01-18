@@ -3,7 +3,7 @@
     <td><%= hotel.address %></td>
     <td><%= hotel.city %></td>
     <td><%= hotel.state %></td>
-    <td><%= hotel.location.country if hotel.location%></td>
+    <td><%= hotel.location.name if hotel.location%></td>
     <td><%= hotel.client.name if hotel.client %></td>
     <td><%= hotel.phone %></td>
     <td><%= hotel.website %></td>
@@ -43,7 +43,7 @@
           </div>
           <div class="form-group">
             <%= f.label :Location %><br/>
-            <%= f.collection_select :location_id, Location.all, :id, :country , class: 'form-control' %>
+            <%= f.collection_select :location_id, Location.all, :id, :name , class: 'form-control' %>
           </div>
           <div class="form-group">
             <%= f.label :Client %><br/>
