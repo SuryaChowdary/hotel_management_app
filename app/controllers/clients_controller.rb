@@ -31,9 +31,10 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     @client.user_id = current_user.id
-   
     if @client.save
-      @client.regions << params[:regions]
+      if params[:region_ids].present?
+        @client.regions << Region.where(id: params[:region_ids])
+      end
       respond_to do |format|
         format.html { redirect_to clients_path }
         format.js { render :content_type => 'application/javascript' }
@@ -131,18 +132,18 @@ class ClientsController < ApplicationController
     end
   end
 
-  def add_location
-  @client = Client.find(params[:id])
-  if params[:location].present? && Location.exists?(params[:location].to_i)
-    location = Location.find(params[:location].to_i)
-    @client.regions << location.region
-  end
-  respond_to do |format|
-    if @client.save
-      format.js { render :add_location }
-    end
-  end
-end
+#   def add_location
+#   @client = Client.find(params[:id])
+#   if params[:location].present? && Location.exists?(params[:location].to_i)
+#     location = Location.find(params[:location].to_i)
+#     @client.regions << location.region
+#   end
+#   respond_to do |format|
+#     if @client.save
+#       format.js { render :add_location }
+#     end
+#   end
+# end
 
 
  

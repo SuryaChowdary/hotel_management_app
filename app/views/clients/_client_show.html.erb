@@ -200,49 +200,21 @@
       </td>
 
       <td>
-        <% if @client.regions.empty? %>
-                  <!-- Button trigger modal -->
-          <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#selectLocationModal">
-            Select Location
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="selectLocationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Select Location</h5>
-                  <button type="button" id= "closeselectForm" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <%= form_tag(add_location_client_path(@client), method: :patch, remote: true,id: "selectForm") do %>
-                    <%= select_tag "region_ids[]", options_from_collection_for_select(Region.all, "id", "name"), prompt: "Region", id: "region", multiple: true %><br/>
-                    <%= select_tag "location_ids[]", options_for_select([["Select Locations"]], prompt: "select"), id: "location" , multiple: true %>
-                    <%= submit_tag("Add Location", class: "btn btn-primary", id: "addLocation") %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div
-
-        <% else %>
-           <ul>
+        <% if @client.regions.any? %>
             <% @client.regions.each do |region| %>
               <li>
               <%= region.name %>
               </li>
                 <%region.locations.each do|location|%>
-                  <%=location.name%>
+                  <ul>
+                    <%=location.name%>
+                  </ul>
                 <%end%>
             <% end %>
-          </ul>
-          
         <%end %>
     </td>
 
-<script>
+<!--script>
   $(document).on('change', '#region', function() {
     var selectedRegions = $(this).val();
     $.ajax({
@@ -254,7 +226,7 @@
       }
     });
   });
-</script>
+</script-->
 
 </tr>
 
