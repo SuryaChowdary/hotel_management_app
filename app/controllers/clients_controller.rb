@@ -46,17 +46,79 @@ class ClientsController < ApplicationController
   end
 
   def update
+
+    @client = Client.find(params[:id])
     if @client.update(client_params)
       respond_to do |format|
-        format.html { redirect_to @client }
-        format.js { render :content_type => 'application/javascript'}
+        format.html { redirect_to clients_path, notice: 'Client was successfully updated.' }
+        format.js { }
       end
     else
       respond_to do |format|
-        format.js 
+        format.html { render :edit }
+        format.js { render 'errors' }
       end
     end
   end
+  
+  # def update
+  #   @client = Client.find(params[:id])
+  #   @client.client_regions.destroy_all
+  #   @client.client_locations.destroy_all
+  #   if params[:region_ids].present?
+  #     @client.regions << Region.where(id: params[:region_ids])
+  #   end
+  #   if params[:location_ids].present?
+  #     @client.locations << Location.where(id: params[:location_ids])
+  #   end
+  #   if @client.update(client_params)
+  #     respond_to do |format|
+  #       format.html { redirect_to clients_path }
+  #       format.js { render :content_type => 'application/javascript' }
+  #     end
+  #   else
+  #     respond_to do |format|
+  #       format.js {render 'errors'}
+  #     end
+  #   end
+  # end
+  # def update
+  #   @client = Client.find(params[:id])
+  #   @client.assign_attributes(client_params)
+  #   if @client.save
+  #     # Only update regions and locations if they're present in the params
+  #     if params[:region_ids].present?
+  #       @client.regions = Region.where(id: params[:region_ids])
+  #     end
+  #     if params[:location_ids].present?
+  #       @client.locations = Location.where(id: params[:location_ids])
+  #     end
+  #     @client.save
+  #     respond_to do |format|
+  #       format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @client }
+  #     end
+  #   else
+  #     respond_to do |format|
+  #       format.html { render :edit }
+  #       format.json { render json: @client.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+  
+  
+  # def update
+  #   if @client.update(client_params)
+  #     respond_to do |format|
+  #       format.html { redirect_to @client }
+  #       format.js { render :content_type => 'application/javascript'}
+  #     end
+  #   else
+  #     respond_to do |format|
+  #       format.js 
+  #     end
+  #   end
+  # end
 
   def destroy
     @client.destroy

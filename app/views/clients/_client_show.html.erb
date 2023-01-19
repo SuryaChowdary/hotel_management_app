@@ -218,19 +218,6 @@
       <%end %>
     </td>
 
-<!--script>
-  $(document).on('change', '#region', function() {
-    var selectedRegions = $(this).val();
-    $.ajax({
-      url: "<%= locations_by_region_client_path(@client) %>",
-      method: "GET",
-      data: { regions: selectedRegions },
-      success: function(data) {
-        $("#location").html(data);
-      }
-    });
-  });
-</script-->
 
 </tr>
 
