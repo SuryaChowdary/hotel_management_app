@@ -205,13 +205,17 @@
               <li>
               <%= region.name %>
               </li>
-                <%region.locations.each do|location|%>
-                  <ul>
-                    <%=location.name%>
-                  </ul>
-                <%end%>
             <% end %>
         <%end %>
+    </td>
+    <td>
+      <% if @client.locations.any? %>
+        <% @client.locations.each do |location| %>
+          <li>
+          <%= location.name %>
+          </li>
+        <%end%>
+      <%end %>
     </td>
 
 <!--script>
