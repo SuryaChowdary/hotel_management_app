@@ -32,8 +32,6 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     @client.user_id = current_user.id
     if @client.save
-        @client.regions << Region.where(id: params[:region_ids])
-       @client.locations << Location.where(id: params[:location_ids])
       respond_to do |format|
         format.html { redirect_to clients_path }
         format.js { render :content_type => 'application/javascript' }
@@ -46,8 +44,7 @@ class ClientsController < ApplicationController
   end
 
   def update
-    @client = Client.find(params[:id])
-    if @client.update(client_params.merge(region_ids: params[:region_ids], location_ids: params[:location_ids]))
+    if @client.update(client_params)
       respond_to do |format|
         format.html { redirect_to clients_path, notice: 'Client was successfully updated.' }
         format.js { }
@@ -140,7 +137,7 @@ class ClientsController < ApplicationController
 
    
     def client_params
-      params.require(:client).permit(:name, :user_id)
+      params.require(:client).permit(:name, :user_id,location_ids:[], region_ids:[])
     end
 
     def room_params
@@ -154,4 +151,5 @@ class ClientsController < ApplicationController
     def room_facility_category_params
       params.require(:room_facility_category).permit(:name)
     end
+    
 end

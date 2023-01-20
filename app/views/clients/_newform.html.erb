@@ -12,11 +12,11 @@
             <%= f.hidden_field :user_id, value: current_user.id %>
             <div class="form-group">
               <%= f.label :Region %>
-                <%= select_tag "region_ids[]", options_from_collection_for_select(Region.all, "id", "name"), prompt: "Select Region", id: "region", multiple: true %>
+              <%= f.select :region_ids, options_from_collection_for_select(Region.all, :id, :name),  {include_hidden: false}, {:multiple => true, :class=>"form-control",id: "region"} %>
             </div>
             <div class="form-group">
               <%= f.label :Location %>
-               <%= select_tag "location_ids[]", options_for_select([["Select Locations"]]), id: "location_ids" , multiple: true %>     
+               <%= f.select :location_ids, options_for_select([["Select Locations"]]), {include_hidden: false}, {class: "form-control" ,id: "location_ids" , multiple: true} %>     
             </div>
             <div class="form-group">
               <%= f.submit 'Add Client', class: 'btn btn-primary' %>

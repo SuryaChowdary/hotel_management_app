@@ -7,6 +7,18 @@ class Client < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
   accepts_nested_attributes_for :hotel_branches
-  accepts_nested_attributes_for :regions
-  accepts_nested_attributes_for :locations
+
+  validate :check_region_and_location
+
+
+  private
+
+  def check_region_and_location
+    if self.region_ids.blank?
+      errors.add(:region_ids, "Please select at least one region")
+    end
+    if self.location_ids.blank?
+      errors.add(:location_ids, "Please select at least one location")
+    end
+  end
 end
