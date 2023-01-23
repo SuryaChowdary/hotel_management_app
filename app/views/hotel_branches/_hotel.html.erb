@@ -7,8 +7,10 @@
     <td><%= hotel.client.name if hotel.client %></td>
     <td><%= hotel.phone %></td>
     <td><%= hotel.website %></td>
+    <!-- button trigger modal for show page-->
     <td><%= link_to 'show', hotel_branch_path(hotel), class: 'btn btn-secondary', data: {remote: true, bs_toggle: "modal", bs_target: "#showhotel_#{hotel.id}" } %></td>
-  <td><%= link_to 'Edit', edit_hotel_branch_path(hotel),  data: {remote: true , bs_toggle: "modal", bs_target: "#edithotel_#{hotel.id}"},  class: 'btn btn-primary' %></td>
+    <!-- button trigger modal for edit form -->
+    <td><%= link_to 'Edit', edit_hotel_branch_path(hotel),  data: {remote: true , bs_toggle: "modal", bs_target: "#edithotel_#{hotel.id}"},  class: 'btn btn-primary' %></td>
     <td><%= button_to 'Delete', hotel_branch_path(hotel), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure Rooms and its Associates will also be deleted?' }%></td>
   </tr>
 <!-- Edit Hotel Modal -->
@@ -73,7 +75,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Hotel Details</h4>
         <button type="button" id= "closeShowForm" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">

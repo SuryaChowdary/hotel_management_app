@@ -1,8 +1,10 @@
 <tr id="room_facility-<%=room_facility.id%>">
   <td><%= room_facility.name%></td>
   <td><%= room_facility.room_facility_category.name %></td>
-  <td><%= link_to 'Show', room_facility, class: 'btn btn-primary' %></td>
-  <td><%= link_to 'Edit', edit_room_facility_path(room_facility), data: { remote: true, "bs_toggle": "modal", "bs_target": "#editroom_facility-#{room_facility.id}"}, class: 'btn btn-primary' %></td>
+  <!-- Button trigger for show page modal -->
+  <td><%= link_to 'Show', room_facility, class: 'btn btn-primary', data: {remote: true, bs_toggle:"modal", bs_target: "#showroom_facility-#{room_facility.id}"} %></td>
+  <!-- button trigger for edit form modal-->
+  <td><%= link_to 'Edit', edit_room_facility_path(room_facility), data: { remote: true, bs_toggle: "modal", bs_target: "#editroom_facility-#{room_facility.id}"}, class: 'btn btn-primary' %></td>
   <td><%= link_to 'Destroy', room_facility,class: 'btn btn-danger',remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>
 <!-- Edit Room Facility Modal-->
@@ -36,6 +38,34 @@
         <% end %>
         <div class="card-footer text-muted">
           <%= link_to 'Back', room_facilities_path, class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Room Facility Show page modal -->
+<div class="modal fade" id="showroom_facility-<%= room_facility.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Room Facility Details</h4>
+        <button type="button" id= "closeShowForm" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="container mt-5">
+        <div class="card">
+          <div class="card-header">
+            <h1 class="card-title">Room facilities for <%= room_facility.room.name %></h1>
+          </div>
+          <div class="card-body">
+            <h2 class="card-subtitle mb-2 text-muted"> Name: <%= room_facility.name %></h2>
+            <h2 class="card-subtitle mb-2 text-muted">Category: <%= room_facility.room_facility_category.name %></h2>
+            <h2 class="card-subtitle mb-2 text-muted">Room Type: <%= room_facility.room.name %></h2>    
+          </div>
+          <div class="card-footer text-muted">
+            <%= link_to 'Back', room_facilities_path, class: 'btn btn-secondary' %>
+          </div>
+          </div>
         </div>
       </div>
     </div>

@@ -11,10 +11,6 @@ class HotelBranchesController < ApplicationController
 
   # Display details of specific hotel
   def show
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
   
   # Create a new hotel

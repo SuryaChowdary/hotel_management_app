@@ -1,6 +1,8 @@
 <tr id="room_facility_category-<%=room_facility_category.id%>">
   <td><%= room_facility_category.name%></td>
-  <td><%= link_to 'Show', room_facility_category, class: 'btn btn-primary'%></td>
+  <!-- Button trigger for show page -->
+  <td><%= link_to 'Show', room_facility_category, class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#showroom_facility_category-#{room_facility_category.id}"}%></td>
+  <!-- Button trigger for edit form -->
   <td><%= link_to 'Edit', edit_room_facility_category_path(room_facility_category), data: {remote: true, bs_toggle: "modal", bs_target: "#editroom_facility_category-#{room_facility_category.id}"},class: 'btn btn-secondary' %></td>
   <td><%= button_to 'Destroy', room_facility_category,class: 'btn btn-danger',remote: true,method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>
@@ -29,6 +31,30 @@
         <div class="card-footer text-muted">
           <%= link_to 'Back', room_facility_categories_path, class: 'btn btn-secondary' %>
         </div> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Room Facility Category Show page modal -->
+<div class="modal fade" id="showroom_facility_category-<%= room_facility_category.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Room Facility Category Details</h4>
+        <button type="button" id= "closeShowForm" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="container mt-5">
+        <div class="card">
+          <div class="card-header">
+            <h1 class="card-title">Categories for Room Facilities</h1>
+          </div>
+          <div class="card-body">
+            <h2 class="card-subtitle mb-2 text-muted"> Name: <%= room_facility_category.name %></h2>
+          <div class="card-footer text-muted">
+            <%= link_to 'Back', room_facility_categories_path, class: 'btn btn-secondary' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
