@@ -11,7 +11,7 @@
   <td><%= link_to 'Edit', edit_hotel_branch_path(hotel),  data: {remote: true , bs_toggle: "modal", bs_target: "#edithotel_#{hotel.id}"},  class: 'btn btn-primary' %></td>
     <td><%= button_to 'Delete', hotel_branch_path(hotel), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure Rooms and its Associates will also be deleted?' }%></td>
   </tr>
-<!-- edit hotel modal -->
+<!-- Edit Hotel Modal -->
 <div class="modal fade" id="edithotel_<%= hotel.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

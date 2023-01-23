@@ -8,6 +8,7 @@
   <td><%= button_to 'Delete', room_path(room), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
 </tr>
 
+<!-- Edit Room Modal -->
 <div class="modal fade" id="editroom-<%= room.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

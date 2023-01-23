@@ -5,7 +5,6 @@
   <td><%= link_to 'Edit', edit_room_facility_path(room_facility), data: { remote: true, "bs_toggle": "modal", "bs_target": "#editroom_facility-#{room_facility.id}"}, class: 'btn btn-primary' %></td>
   <td><%= link_to 'Destroy', room_facility,class: 'btn btn-danger',remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>
-
 <!-- Edit Room Facility Modal-->
 <div class="modal fade" id="editroom_facility-<%= room_facility.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
   <div class="modal-dialog" role="document">
