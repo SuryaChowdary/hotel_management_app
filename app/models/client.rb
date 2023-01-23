@@ -7,12 +7,11 @@ class Client < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
   accepts_nested_attributes_for :hotel_branches
-
   validate :check_region_and_location
-
 
   private
 
+  # private method to ensure the client has regions and locations assocaited or not
   def check_region_and_location
     if self.region_ids.blank?
       errors.add(:region_ids, "Please select at least one region")
@@ -21,4 +20,5 @@ class Client < ApplicationRecord
       errors.add(:location_ids, "Please select at least one location")
     end
   end
+  
 end

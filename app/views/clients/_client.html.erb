@@ -1,11 +1,11 @@
-      <tr id = "client-<%= client.id %>">
-        <td><%= client.name %></td>
-        <td><%= link_to 'Show', client_path(client), class: 'btn btn-secondary' %></td>
-        <td><%= link_to 'Edit', edit_client_path(client),data: { remote: true , bs_toggle: "modal", bs_target: "#editclient-#{client.id}"}, class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure, All the associates will get deleted?' } , class: 'btn btn-danger'%></td>
-      </tr>
+  <tr id = "client-<%= client.id %>">
+    <td><%= client.name %></td>
+    <td><%= link_to 'Show', client_path(client), class: 'btn btn-secondary' %></td>
+    <td><%= link_to 'Edit', edit_client_path(client),data: { remote: true , bs_toggle: "modal", bs_target: "#editclient-#{client.id}"}, class: 'btn btn-primary' %></td>
+    <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure, All the associates will get deleted?' } , class: 'btn btn-danger'%></td>
+  </tr>
 
-      <!-- Edit Modal -->
+  <!-- Edit Modal -->
   <div class="modal fade" id="editclient-<%= client.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -40,17 +40,18 @@
       </div>
     </div>
   </div>
+
   <script>
-  $(document).on('change', '#region-<%= client.id %>', function getLocations() {
-  var selectedRegions = $(this).val();
-  $.ajax({
-    url: "/locations_by_region",
-    method: "GET",
-    data: { regions: selectedRegions },
-    success: function(data) {
-      $("#location-<%= client.id %>").html(data);
-    }
-  });
-});
-</script>
+    $(document).on('change', '#region-<%= client.id %>', function getLocations() {
+      var selectedRegions = $(this).val();
+      $.ajax({
+        url: "/locations_by_region",
+        method: "GET",
+        data: { regions: selectedRegions },
+        success: function(data) {
+          $("#location-<%= client.id %>").html(data);
+        }
+      });
+    });
+  </script>
 </div> 

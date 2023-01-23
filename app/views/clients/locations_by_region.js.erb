@@ -1,1 +1,2 @@
-$("#location_ids").html("<%= options_for_select(["Select Locations"] + @locations.map{|location| [location.name + '('+ location.region.name+')', location.id]}) %>");
+
+$("#location_ids").html("<%= options_for_select(['Select Locations'] + @locations.map{|location| [location.name + '(' + location.region.name + ')', location.id]}) %>");

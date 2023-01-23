@@ -5,6 +5,7 @@
   <td><%= button_to 'Delete', region_path(region), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
 </tr>
 
+<!-- Edit Region Modal -->
 <div class="modal fade" id="editregion_<%= region.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

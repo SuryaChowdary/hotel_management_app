@@ -2,11 +2,11 @@
       <td><%= @client.name %></td>
       <td>
         <% if @client.hotel_branches.empty? %>
-          <!-- Button trigger modal -->
+          <!-- Button trigger modal to select hotels -->
             <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#selectHotelModal">
               SelectHotel
             </button>
-            <!-- Modal -->
+            <!-- Select Hotels modal -->
             <div class="modal fade" id="selectHotelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -36,10 +36,11 @@
           </div>
         <% end %>
       </td>
+
       <td>
         <% @client.hotel_branches.each do |hotel|%>
           <% if hotel.rooms.empty? %>
-            <!-- Button trigger modal -->
+            <!-- Button trigger modal for adding Rooms -->
             <li>
               <button type="button", class="btn btn-primary mt-2", data-bs-toggle="modal", data-bs-target="#addRoomModal">
                 Add Room
@@ -96,17 +97,17 @@
           <% end %>
         <% end %>
       </td>
+
       <td>
         <% @client.hotel_branches.each do |hotel|%>
           <% hotel.rooms.each do |room| %>
             <% if room.room_facilities.empty?%>
-                <!-- Button trigger modal -->
+                <!-- Button trigger modal for adding Room Facilities -->
                 <li>
                   <button type="button", class="btn btn-primary mt-2", data-bs-toggle="modal", data-bs-target="#addRoomFacilityModal">
                     Add Room Facility
                   </button>
                 </li>
-                <!-- Modal -->
                 <!-- Add Room Facility Modal -->
                 <div class="modal fade" id="addRoomFacilityModal" tabindex="-1" role="dialog" aria-labelledby="addRoomFacilityModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -160,6 +161,7 @@
           <% end %>
         <% end %>
       </td>
+
       <td>
         <ul>
           <% if @room_facility_categories.present? %>
@@ -170,10 +172,11 @@
             <li>No Room Facility Categories Found</li>
           <% end %>
         </ul>
-
+        <!-- Button trigger modal for adding room facility category -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
           Add Room Facility Category
         </button>
+        <!-- Room Facility Category Modal -->
         <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -217,8 +220,6 @@
         <%end%>
       <%end %>
     </td>
-
-
 </tr>
 
 

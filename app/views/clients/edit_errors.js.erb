@@ -1,6 +1,6 @@
-  <% if @client.errors.any? %>
+<% if @client.errors.any? %>
   $("#editerrors").html("<%= j(render 'clients/errors', client: @client) %>");
-   $("#editclient-<%=@client.id%>").show();
-  <% end %> 
+  $("#editclient-<%=@client.id%>").show();
+<% end %> 
 
 

@@ -1,8 +1,8 @@
 <% if hotel.errors.any? %>
-    <h2><%= pluralize(hotel.errors.count, "error") %> prohibited this location from being saved:</h2>
-    <ul>
-      <% hotel.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+  <h2><%= pluralize(hotel.errors.count, "error") %> prohibited this location from being saved:</h2>
+  <ul>
+    <% hotel.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>

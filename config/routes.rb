@@ -19,15 +19,14 @@ Rails.application.routes.draw do
   patch 'clients/:id/add_room_facility_categories', to: 'clients#add_room_facility_categories', as: 'add_room_facility_categories_client'
   patch 'clients/:id/add_regions', to: 'clients#add_regions', as: 'add_regions_client'
   patch '/clients/:id/add_location', to: 'clients#add_location', as: 'add_location_client'
-  #get '/clients/:id/locations_by_region', to: 'clients#locations_by_region', as: 'locations_by_region_client' 
   get '/locations_by_region', to: 'clients#locations_by_region', as: 'locations_by_region'
 
 
-  resources :clients do
-    member do
-      get :locations_by_region
-    end
-  end
+  # resources :clients do
+  #   member do
+  #     get :locations_by_region
+  #   end
+  # end
 
 
   

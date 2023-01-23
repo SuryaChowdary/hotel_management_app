@@ -3,19 +3,22 @@ class HotelBranchesController < ApplicationController
   before_action :require_user
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
 
+  # Display list of all hotels in the order of created dates 
   def index
     @hotels = HotelBranch.all.order('created_at ASC')
     @hotel = HotelBranch.new
-
   end
 
+  # Display details of specific hotel
   def show
   end
   
+  # Create a new hotel
   def new
     @hotel = HotelBranch.new
   end
 
+  # Save the new hotel to database
   def create
     @hotel = HotelBranch.new(hotel_params)
     if @hotel.save
@@ -25,12 +28,12 @@ class HotelBranchesController < ApplicationController
       end
     else
       respond_to do |format|
-        #format.html { render :new}
         format.js {render 'errors'}
       end
     end
   end
 
+  # To edit a specific hotel details
   def edit
     respond_to do |format|
       format.html
@@ -38,6 +41,7 @@ class HotelBranchesController < ApplicationController
     end
   end
 
+  # Updating the edited hotel details to database 
   def update
     if @hotel.update(hotel_params)
       respond_to do |format|
@@ -46,12 +50,12 @@ class HotelBranchesController < ApplicationController
       end
     else
       respond_to do |format|
-        #format.html { render :edit}
         format.js {render 'edit_errors'}
       end
     end
   end
 
+  # Deleting the existing hotel
   def destroy
     @hotel.destroy
     respond_to do |format|
@@ -62,12 +66,14 @@ class HotelBranchesController < ApplicationController
 
   private 
 
-  def set_hotel
-    @hotel = HotelBranch.find(params[:id])
-  end
+    # private method to find hotel with hotel_branch_id
+    def set_hotel
+      @hotel = HotelBranch.find(params[:id])
+    end
 
-  def hotel_params
-    params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website, :location_id, :client_id)
-  end
+    # private method to pass hotel parameters for creating and updating hotels
+    def hotel_params
+      params.require(:hotel_branch).permit(:name, :address, :city, :state, :country, :phone, :website, :location_id, :client_id)
+    end
 
 end

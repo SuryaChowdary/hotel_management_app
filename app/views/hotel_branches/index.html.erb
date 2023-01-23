@@ -19,11 +19,11 @@
   <tbody>
 </table>
 
-<!-- Button trigger modal -->
+<!-- Button trigger modal for adding hotel -->
 <button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
   Add New Hotel
 </button>
-<!-- Modal -->
+<!-- New Hotel Modal -->
 <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -41,9 +41,8 @@
   </div>
 </div> 
 
-
 <p>
   <%= link_to 'Home' , root_path, class: 'btn btn-secondary mt-2' %>
 </p>
-<div class="modal-body" id="editmodal">
+
 <div id="form-container"></div>
