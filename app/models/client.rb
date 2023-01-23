@@ -20,5 +20,4 @@ class Client < ApplicationRecord
       errors.add(:location_ids, "Please select at least one location")
     end
   end
-  
 end
