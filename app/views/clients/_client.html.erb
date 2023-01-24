@@ -1,6 +1,7 @@
   <tr id = "client-<%= client.id %>">
     <td><%= client.name %></td>
-    <td><%= link_to 'Show', client_path(client), class: 'btn btn-secondary' %></td>
+    <td><%= link_to 'Show', client_path(client), class: 'btn btn-info', data: {remote: true, bs_toggle: "modal", bs_target: "#showclient-#{client.id}"} %></td>
+    <td><%= link_to 'Add Criteria', client_path(client), class: 'btn btn-secondary' %></td>
     <td><%= link_to 'Edit', edit_client_path(client),data: { remote: true , bs_toggle: "modal", bs_target: "#editclient-#{client.id}"}, class: 'btn btn-primary'%></td>
     <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure, All the associates will get deleted?' } , class: 'btn btn-danger'%></td>
   </tr>
@@ -65,3 +66,50 @@
     });
   </script>
 </div> 
+
+<!-- Client show modal -->
+<div class="modal fade" id="showclient-<%=client.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Client Details</h5>
+        <button type="button" id= "closeShowForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <div class="card">
+            <div class="card-header">
+              <h1 class="card-title">Name: <%= client.name %></h1>
+            </div>
+            <div class="card-body">
+                <p class="card-subtitle "> <strong>Hotels:</strong></p>
+                <% client.hotel_branches.each do |hotel| %>
+                  <ul>
+                    <%= hotel.name %>
+                  </ul>
+                <% end %>
+                <% client.regions.each do |region|%>
+                  <p class="card-subtitle "><strong> Regions: </strong></p> 
+                    <ul>
+                      <%= region.name%></p>
+                    </ul>
+                <% end %>
+                <% client.locations.each do |location|%>
+                    <p class="card-subtitle "> <strong>Locations:</strong></p>
+                    <ul>
+                      <%=location.name%>
+                    </ul>
+                <% end %>
+            </div>
+            <div class="card-footer text-muted">
+              <%= link_to 'Back', clients_path, class: 'btn btn-secondary' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
