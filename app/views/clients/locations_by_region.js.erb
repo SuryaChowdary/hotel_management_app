@@ -1,1 +1,5 @@
-$("#location_ids").html("<%= options_for_select(['Select Locations'] + @locations.map{|location| [location.name + '(' + location.region.name + ')', location.id]}) %>");
+var options = '<option value="">Select Locations</option>';
+<% @locations.each do |location| %>
+  options += '<option value="<%= location.id %>"><%= location.name + "(" + location.region.name + ")" %></option>';
+<% end %>
+$("#location_ids").html(options);
