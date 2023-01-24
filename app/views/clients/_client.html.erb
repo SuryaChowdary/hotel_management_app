@@ -10,7 +10,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Edit Client</h5>
+        <h5 class="modal-title" id="editModalLabel">Edit Client Details</h5>
         <button type="button" class="closeEditForm" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,7 +21,9 @@
             <div class="row justify-content-center mt-4 ">
               <div class="col-md-8">
                 <div class="card">
-                  <div class="card-header">Edit Client details</div>
+                  <div class="card-header">
+                    <h1>Edit Client</h1>
+                  </div>
                   <div class="card-body">
                     <%= form_with(model: client, data: { remote: true}, method: :patch, id: 'edit-form') do |f| %>
                       <div class="form-group ">
@@ -36,13 +38,11 @@
                         <%= f.label :Location %>
                         <%= f.collection_select(:location_ids, Location.where(region_id: client.regions.pluck(:id)), :id, :name, {include_blank: "Select Locations"}, {multiple: true, class: "form-control", id: "location-#{client.id}"}) %>
                       </div>
-                      <div class="form-group">
-                        <%= f.submit 'Update Client', class: 'btn btn-primary mt-2' %>
-                      </div>
-                    <% end %>
                       <div class="card-footer text-muted">
+                        <%= f.submit 'Update Client', class: 'btn btn-primary mt-2' %>
                         <%= link_to 'Back', clients_path , class: 'btn btn-secondary mt-2' %>
                       </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
