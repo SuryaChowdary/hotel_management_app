@@ -1,7 +1,7 @@
 <% if @hotel.errors.any? %>
-  $("#errors").html("<%= j(render 'hotel_branches/errors', hotel: @hotel) %>");
-  $("#editerrors").html("<%= j(render 'hotel_branches/errors', hotel: @hotel) %>");
-
+  <%if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'hotel_branches/errors', hotel: @hotel) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors_<%= @hotel.id %>").html("<%= j(render 'hotel_branches/errors', hotel: @hotel) %>");
+  <% end %>
 <% end %> 
-
-
