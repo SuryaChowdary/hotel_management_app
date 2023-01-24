@@ -1,1 +1,3 @@
-$('#editclient-<%=@client.id%>').show();
+$(document).ready('click', '.edit-button', function(){
+  $('#editclient-<%=@client.id%>').show();
+});
