@@ -1,4 +1,4 @@
 <% if @region.errors.any? %>
   $("#errors").html("<%= j(render 'regions/errors', region: @region) %>");
-  $("#editregion_<%=@region.id%>").show();
+  $("#editerrors").html("<%= j(render 'regions/errors', region: @region) %>");
 <% end %> 

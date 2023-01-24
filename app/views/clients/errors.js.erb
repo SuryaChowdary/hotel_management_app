@@ -1,4 +1,4 @@
 <% if @client.errors.any? %>
   $("#errors").html("<%= j(render 'clients/errors', client: @client) %>");
-
+  $("#editerrors").html("<%= j(render 'clients/errors', client: @client) %>");
 <% end %> 

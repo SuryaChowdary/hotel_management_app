@@ -1,4 +1,4 @@
 <% if @room.errors.any? %>
   $("#errors").html("<%= j(render 'rooms/errors', room: @room) %>");
-  $('#newModal').show()
+  $("#editerrors").html("<%= j(render 'rooms/errors', room: @room) %>");
 <% end %> 

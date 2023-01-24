@@ -48,7 +48,7 @@ class RoomFacilityCategoriesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.js { render 'edit_errors' }
+        format.js { render 'errors' }
       end
     end
   end

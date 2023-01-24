@@ -1,6 +1,0 @@
-<% if @room_facility_category.errors.any? %>
-  $("#editerrors").html("<%= j(render 'room_facility_categories/errors', room_facility_category: @room_facility_category) %>");
-  $("#editroom_facility_category-<%=@room_facility_category.id%>").show();
-<% end %> 
-
-
