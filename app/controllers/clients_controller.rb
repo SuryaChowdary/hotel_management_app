@@ -56,7 +56,7 @@ class ClientsController < ApplicationController
     else
       respond_to do |format|
         format.html { render :edit }
-        format.js { render 'edit_errors' }
+        format.js { render 'errors' }
       end
     end
   end

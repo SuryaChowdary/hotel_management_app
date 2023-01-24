@@ -1,7 +1,7 @@
   <tr id = "client-<%= client.id %>">
     <td><%= client.name %></td>
     <td><%= link_to 'Show', client_path(client), class: 'btn btn-secondary' %></td>
-    <td><%= link_to 'Edit', edit_client_path(client),data: { remote: true , bs_toggle: "modal", bs_target: "#editclient-#{client.id}"}, class: 'btn btn-primary' %></td>
+    <td><%= link_to 'Edit', edit_client_path(client),data: { remote: true , bs_toggle: "modal", bs_target: "#editclient-#{client.id}"}, class: 'btn btn-primary'%></td>
     <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure, All the associates will get deleted?' } , class: 'btn btn-danger'%></td>
   </tr>
 
@@ -16,7 +16,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div id="editerrors"></div>
+        <div id="errors"></div>
           <div class="container">
             <div class="row justify-content-center mt-4 ">
               <div class="col-md-8">
@@ -30,11 +30,11 @@
                       </div>
                       <div class="form-group">
                         <%= f.label :Region %>
-                        <%= f.select :region_ids, options_from_collection_for_select( Region.all, :id, :name,selected: client.region_ids,prompt: "Select Regions"), {include_hidden: false}, {:multiple => true, :class=>"form-control", id: "region-#{client.id}" } %>
+                        <%= f.collection_select :region_ids, Region.all, :id, :name, {prompt: "Select regions"}, {include_hidden: false, multiple: true, class: "form-control", id: "region-#{client.id}"} %>
                       </div>
                       <div class="form-group">
                         <%= f.label :Location %>
-                        <%= f.select :location_ids, options_for_select([["Select Locations"]],selected: client.location_ids), {include_hidden: false}, {class: "form-control" ,id: "location-#{client.id}" , multiple: true,selected: @client.locations.pluck(:id)} %>     
+                        <%= f.collection_select(:location_ids, Location.where(region_id: client.regions.pluck(:id)), :id, :name, {include_blank: "Select Locations"}, {multiple: true, class: "form-control", id: "location-#{client.id}"}) %>
                       </div>
                       <div class="form-group">
                         <%= f.submit 'Update Client', class: 'btn btn-primary mt-2' %>
