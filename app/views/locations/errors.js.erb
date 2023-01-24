@@ -1,4 +1,7 @@
 <% if @location.errors.any? %>
-  $('#errors').html("<%= j render 'locations/errors', location: @location %>")
-  $("#editerrors").html("<%= j(render 'locations/errors', location: @location) %>");
+  <% if params[:action] == "create" %>
+    $('#newerrors').html("<%= j render 'locations/errors', location: @location %>")
+  <% elsif params[:action] == "update" %>
+    $("#editerrors_<%= @location.id %>").html("<%= j(render 'locations/errors', location: @location) %>");
+  <% end %>
 <% end %>

@@ -1,4 +1,7 @@
 <% if @room_facility.errors.any? %>
-  $("#errors").html("<%= j(render 'room_facilities/errors', room_facility: @room_facility) %>");
-   $("#editerrors").html("<%= j(render 'room_facilities/errors', room_facility: @room_facility) %>");
+  <% if params[:action] == "create"%>
+    $("#newerrors").html("<%= j(render 'room_facilities/errors', room_facility: @room_facility) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @room_facility.id %>").html("<%= j(render 'room_facilities/errors', room_facility: @room_facility) %>");
+  <% end %>
 <% end %> 

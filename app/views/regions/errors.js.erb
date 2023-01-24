@@ -1,4 +1,7 @@
 <% if @region.errors.any? %>
-  $("#errors").html("<%= j(render 'regions/errors', region: @region) %>");
-  $("#editerrors").html("<%= j(render 'regions/errors', region: @region) %>");
-<% end %> 
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'regions/errors', region: @region) %>");
+  <% elsif params[:action] == "update" %>  
+    $("#editerrors_<%= @region.id%> ").html("<%= j(render 'regions/errors', region: @region) %>");
+  <% end %> 
+<% end %>

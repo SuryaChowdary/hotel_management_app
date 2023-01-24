@@ -1,4 +1,7 @@
 <% if @client.errors.any? %>
-  $("#errors").html("<%= j(render 'clients/errors', client: @client) %>");
-  $("#editerrors").html("<%= j(render 'clients/errors', client: @client) %>");
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'clients/errors', client: @client) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @client.id%>").html("<%= j(render 'clients/errors', client: @client) %>");
+  <% end %>
 <% end %> 

@@ -1,4 +1,7 @@
 <% if @room_facility_category.errors.any? %>
-  $("#errors").html("<%= j(render 'room_facility_categories/errors', room_facility_category: @room_facility_category) %>");
-  $("#editerrors").html("<%= j(render 'room_facility_categories/errors', room_facility_category: @room_facility_category) %>");
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'room_facility_categories/errors', room_facility_category: @room_facility_category) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @room_facility_category.id%>").html("<%= j(render 'room_facility_categories/errors', room_facility_category: @room_facility_category) %>");
+  <% end %>
 <% end %> 

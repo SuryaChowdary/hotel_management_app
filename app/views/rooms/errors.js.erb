@@ -1,4 +1,7 @@
 <% if @room.errors.any? %>
-  $("#errors").html("<%= j(render 'rooms/errors', room: @room) %>");
-  $("#editerrors").html("<%= j(render 'rooms/errors', room: @room) %>");
-<% end %> 
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'rooms/errors', room: @room) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @room.id %>").html("<%= j(render 'rooms/errors', room: @room) %>");
+  <% end %> 
+<% end %>
