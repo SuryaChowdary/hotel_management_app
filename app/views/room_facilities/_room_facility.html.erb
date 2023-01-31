@@ -32,11 +32,11 @@
                     </div>
                     <div class="form-group">
                       <%= f.label :Category %><br/>
-                      <%= f.select :room_facility_category_id, RoomFacilityCategory.all.collect {|x| [x.name, x.id]}, {} %>
+                      <%= f.select :room_facility_category_id, RoomFacilityCategory.all.collect {|x| [x.name, x.id]}, {}, class: 'form-control' %>
                     </div>
                     <div class="form-group">
                       <%= f.label :Room %><br/>
-                      <%= f.select :room_id, Room.all.collect {|x| [x.name, x.id]}, {} %>
+                      <%= f.select :room_id, Room.all.collect {|x| [x.name, x.id]}, {}, class: 'form-control' %>
                     </div>
                     <div class="card-footer text-muted">
                       <%= f.submit 'Update Room Facility', class: 'btn btn-primary mt-2' %>

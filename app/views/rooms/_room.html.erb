@@ -4,7 +4,7 @@
   <td><%= room.price %></td>
   <td><%= room.hotel_branch.name %></td>
   <!-- Button trigger for room show page modal -->
-  <td><%= link_to 'Show', room_path(room) , class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#showroom-#{room.id}"} %></td>
+  <td><%= link_to 'Show', room_path(room) , class: 'btn btn-primary show-modal-button', data: {remote: true, bs_toggle: "modal", bs_target: "#showroom-#{room.id}"} %></td>
   <!-- Button trigger for room's edit form -->
   <td><%= link_to 'Edit', edit_room_path(room), data: { remote: true , bs_toggle: "modal", bs_target: "#editroom-#{room.id}"}, class: 'btn btn-secondary' %></td>
   <td><%= button_to 'Delete', room_path(room), class: 'btn btn-danger', remote: true , method: :delete, data: { confirm: 'Are you sure?' }%></td>
@@ -37,7 +37,7 @@
                       </div>
                       <div class="form-group">
                       <%= f.label :Hotel %><br/>
-                      <%= f.select :hotel_branch_id, HotelBranch.all.collect {|x| [x.name, x.id]}, {} %>
+                      <%= f.select :hotel_branch_id, HotelBranch.all.collect {|x| [x.name, x.id]}, {}, class: 'form-control' %>
                       </div>
                       <div class="form-group">
                       <%= f.label :Capacity %>
@@ -87,4 +87,7 @@
       </div>
     </div>
   </div>
+  <script>
+  
+  </script>
 </div>

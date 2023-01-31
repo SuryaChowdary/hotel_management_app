@@ -14,7 +14,7 @@
             </div>
             <div class="form-group">
               <%= f.label :Hotel %><br/>
-              <%= f.select :hotel_branch_id, HotelBranch.all.collect {|x| [x.name, x.id]}, {} %>
+              <%= f.select :hotel_branch_id, HotelBranch.all.collect {|x| [x.name, x.id]}, {}, class: 'form-control' %>
             </div>
             <div class="form-group">
               <%= f.label :Capacity %>
