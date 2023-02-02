@@ -28,9 +28,10 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     if @room.save
+      roomId = @room.id
       respond_to do|format|
         format.html {redirect_to rooms_path}
-        format.js {render :content_type => 'application/javascript'}
+        format.js {redirect_to rooms_url, :content_type => 'application/javascript'}
       end
     else
       respond_to do|format|
@@ -43,7 +44,7 @@ class RoomsController < ApplicationController
   def update
     if @room.update(room_params)
       respond_to do |format|
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        format.html { redirect_to rooms_path, notice: 'Room was successfully updated.' }
         format.js { render :content_type => 'application/javascript' }
       end
     else
