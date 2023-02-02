@@ -32,7 +32,7 @@ class RegionsController < ApplicationController
     if @region.save
       respond_to do |format|
         format.html { redirect_to regions_path }
-        format.js { render :content_type => 'application/javascript' }
+        format.js { redirect_to regions_path, :content_type => 'application/javascript' }
       end
     else
       respond_to do|format|

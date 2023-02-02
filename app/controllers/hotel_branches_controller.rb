@@ -23,8 +23,8 @@ class HotelBranchesController < ApplicationController
     @hotel = HotelBranch.new(hotel_params)
     if @hotel.save
       respond_to do |format|
-        format.html { redirect_to hotels_path}
-        format.js {render :content_type => 'application/javascript'}
+        format.html { redirect_to hotel_branches_path}
+        format.js {redirect_to hotel_branches_path, :content_type => 'application/javascript'}
       end
     else
       respond_to do |format|

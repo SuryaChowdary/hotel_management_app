@@ -22,7 +22,7 @@ class RoomFacilityCategoriesController < ApplicationController
     if @room_facility_category.save
       respond_to do |format|
         format.html { redirect_to room_facility_categories_path}
-        format.js {render :content_type => 'application/javascript'}
+        format.js {redirect_to room_facility_categories_path, :content_type => 'application/javascript'}
       end
     else
       respond_to do|format|
